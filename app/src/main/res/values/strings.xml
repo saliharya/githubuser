@@ -8,4 +8,5 @@
     <string name="follower_count">Follower: %d</string>
     <string name="following_count">Following: %d</string>
     <string name="github_user_pict">Github User Pict</string>
+    <string name="search_by_username">Search by username</string>
 </resources>
