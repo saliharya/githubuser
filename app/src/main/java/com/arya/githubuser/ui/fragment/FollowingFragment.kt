@@ -13,6 +13,7 @@ import com.arya.githubuser.databinding.FragmentFollowingBinding
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.ui.activity.DetailActivity
 import com.arya.githubuser.ui.adapter.ListGitHubUserAdapter
+import com.arya.githubuser.utils.showToast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,11 +76,7 @@ class FollowingFragment : Fragment() {
 
             override fun onFailure(call: Call<List<GithubUser>>, t: Throwable) {
                 activity?.runOnUiThread {
-                    Toast.makeText(
-                        activity,
-                        t.message ?: "Fail to fetch data",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    activity?.showToast(t.message)
                 }
             }
         })

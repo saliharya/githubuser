@@ -2,7 +2,6 @@ package com.arya.githubuser.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.arya.githubuser.R
@@ -10,6 +9,7 @@ import com.arya.githubuser.api.GitHubService
 import com.arya.githubuser.databinding.ActivityDetailBinding
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.ui.adapter.SectionsPagerAdapter
+import com.arya.githubuser.utils.showToast
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import retrofit2.Call
@@ -60,11 +60,7 @@ class DetailActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<GithubUser>, t: Throwable) {
                 runOnUiThread {
-                    Toast.makeText(
-                        this@DetailActivity,
-                        t.message ?: "Fail to fetch data",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showToast(t.message)
                 }
             }
         })
