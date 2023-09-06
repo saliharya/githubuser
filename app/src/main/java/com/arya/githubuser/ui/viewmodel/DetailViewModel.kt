@@ -30,13 +30,12 @@ class DetailViewModel : ViewModel() {
         call.enqueue(object : Callback<GithubUser> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
-                call: Call<GithubUser>,
-                response: Response<GithubUser>
+                call: Call<GithubUser>, response: Response<GithubUser>
             ) {
                 _isLoadingLiveData.postValue(false)
                 if (response.isSuccessful) {
                     val gitHubResponse = response.body()
-                    _responseLiveData.postValue(gitHubResponse)
+                    gitHubResponse?.let { _responseLiveData.postValue(it) }
                 }
             }
 

@@ -1,30 +1,25 @@
 package com.arya.githubuser.ui.fragment
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.arya.githubuser.api.GitHubService
+import androidx.fragment.app.viewModels
 import com.arya.githubuser.databinding.FragmentFollowerBinding
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.ui.activity.DetailActivity
 import com.arya.githubuser.ui.adapter.ListGitHubUserAdapter
+import com.arya.githubuser.ui.viewmodel.FollowerViewModel
 import com.arya.githubuser.utils.showToast
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class FollowerFragment : Fragment() {
 
     private lateinit var binding: FragmentFollowerBinding
     private val followerList = ArrayList<GithubUser>()
     private var adapter: ListGitHubUserAdapter? = null
-    private val apiKey = "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" // Replace with your API key
-    private val gitHubService = GitHubService.create(apiKey)
+    private val viewModel by viewModels<FollowerViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,36 +44,23 @@ class FollowerFragment : Fragment() {
         }
         binding.rvFollower.adapter = adapter
 
-        // Call your method to fetch and display followers here
-        fetchGitHubFollowers(username.orEmpty())
+        observeLiveData()
+
+        viewModel.fetchGitHubFollowers(username.orEmpty())
     }
 
-    private fun fetchGitHubFollowers(username: String) {
-        // Make a request to fetch GitHub followers using your API interface
-        val call = gitHubService.getFollowers("Bearer $apiKey", username)
-
-        call.enqueue(object : Callback<List<GithubUser>> {
-            @SuppressLint("NotifyDataSetChanged")
-            override fun onResponse(
-                call: Call<List<GithubUser>>,
-                response: Response<List<GithubUser>>
-            ) {
-                if (response.isSuccessful) {
-                    val followers = response.body()
-                    followers?.let {
-                        followerList.clear()
-                        followerList.addAll(it)
-                        adapter?.notifyDataSetChanged()
-                    }
-                }
+    private fun observeLiveData() {
+        viewModel.isLoadingLiveData.observe(viewLifecycleOwner) {}
+        viewModel.responseLiveData.observe(viewLifecycleOwner) { followers ->
+            followers?.let {
+                followerList.clear()
+                followerList.addAll(it)
+                adapter?.notifyDataSetChanged()
             }
-
-            override fun onFailure(call: Call<List<GithubUser>>, t: Throwable) {
-                activity?.runOnUiThread {
-                    activity?.showToast(t.message)
-                }
-            }
-        })
+        }
+        viewModel.errorLiveData.observe(viewLifecycleOwner) { throwable ->
+            activity?.showToast(throwable.message)
+        }
     }
 
     companion object {
