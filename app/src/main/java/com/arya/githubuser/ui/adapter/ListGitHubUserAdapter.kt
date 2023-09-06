@@ -4,26 +4,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.arya.githubuser.databinding.ItemGithubUserBinding
-import com.arya.githubuser.model.GitHubUser
+import com.arya.githubuser.model.GithubUser
 import com.bumptech.glide.Glide
 
-class ListGitHubUserAdapter(private val listGithubUser: ArrayList<GitHubUser>) :
-    RecyclerView.Adapter<ListGitHubUserAdapter.ListViewHolder>() {
+class ListGitHubUserAdapter(
+    private val listGithubUser: ArrayList<GithubUser>,
+    private val onItemClicked: (GithubUser) -> Unit
+) : RecyclerView.Adapter<ListGitHubUserAdapter.ListViewHolder>() {
 
     inner class ListViewHolder(private val binding: ItemGithubUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(user: GitHubUser) {
-            binding.tvUsername.text = user.login // Set the username
+        fun bind(user: GithubUser) {
+            with(binding) {
+                tvUsername.text = user.login // Set the username
 
-            // Load the user's avatar using Glide (you may need to add the Glide dependency to your project)
-            Glide.with(binding.root.context)
-                .load(user.avatar_url)
-                .into(binding.ivPicture)
+                // Load the user's avatar using Glide (you may need to add the Glide dependency to your project)
+                Glide.with(root.context)
+                    .load(user.avatar_url)
+                    .into(ivPicture)
 
-            // Set a click listener for the item, if needed
-            itemView.setOnClickListener {
-                // Handle item click here, e.g., navigate to the user's GitHub profile
+                // Set a click listener for the item, if needed
+                root.setOnClickListener { onItemClicked(user) }
             }
         }
     }
