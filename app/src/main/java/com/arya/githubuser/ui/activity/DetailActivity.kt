@@ -1,26 +1,22 @@
 package com.arya.githubuser.ui.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.arya.githubuser.R
-import com.arya.githubuser.api.GitHubService
 import com.arya.githubuser.databinding.ActivityDetailBinding
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.ui.adapter.SectionsPagerAdapter
+import com.arya.githubuser.ui.viewmodel.DetailViewModel
 import com.arya.githubuser.utils.showToast
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class DetailActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
-    private val apiKey = "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"
-    private val gitHubService = GitHubService.create(apiKey)
+    private val viewModel by viewModels<DetailViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,42 +24,15 @@ class DetailActivity : AppCompatActivity() {
 
         // Retrieve data from the Intent
         val user: GithubUser? = intent.getParcelableExtra("user")
-        fetchGitHubUsers(user?.login.orEmpty())
-
+        viewModel.fetchGitHubUsers(user?.login.orEmpty())
 
         // Update the UI elements
         with(binding) {
             tvUsername.text = user?.login
             Glide.with(this@DetailActivity).load(user?.avatar_url).into(ivPicture)
         }
-    }
 
-    private fun fetchGitHubUsers(username: String) {
-        val call = gitHubService.getUserDetail("Bearer $apiKey", username)
-        call.enqueue(object : Callback<GithubUser> {
-            @SuppressLint("NotifyDataSetChanged")
-            override fun onResponse(
-                call: Call<GithubUser>,
-                response: Response<GithubUser>
-            ) {
-                if (response.isSuccessful) {
-                    val gitHubResponse = response.body()
-                    with(binding) {
-                        tvFollowerCount.text =
-                            getString(R.string.follower_count, gitHubResponse?.followers ?: 0)
-                        tvFollowingCount.text =
-                            getString(R.string.following_count, gitHubResponse?.following ?: 0)
-                        setUpViewPager(username)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<GithubUser>, t: Throwable) {
-                runOnUiThread {
-                    showToast(t.message)
-                }
-            }
-        })
+        observeLiveData()
     }
 
     private fun ActivityDetailBinding.setUpViewPager(username: String) {
@@ -73,6 +42,28 @@ class DetailActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
+    }
+
+    private fun observeLiveData() {
+        viewModel.isLoadingLiveData.observe(this) {}
+        viewModel.responseLiveData.observe(this) { response ->
+            with(binding) {
+                tvFollowerCount.text =
+                    getString(
+                        R.string.follower_count,
+                        response.followers ?: 0
+                    )
+                tvFollowingCount.text =
+                    getString(
+                        R.string.following_count,
+                        response.following ?: 0
+                    )
+                setUpViewPager(response.login.orEmpty())
+            }
+        }
+        viewModel.errorLiveData.observe(this) { throwable ->
+            showToast(throwable.message)
+        }
     }
 
     companion object {
