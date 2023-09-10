@@ -7,13 +7,19 @@
     android:orientation="vertical"
     tools:context=".ui.activity.DetailActivity">
 
-    <ImageView
-        android:id="@+id/ivPicture"
+    <io.github.florent37.shapeofview.shapes.CircleView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_margin="28dp"
-        android:contentDescription="@string/github_user_pict" />
+        android:layout_margin="28dp">
+
+        <ImageView
+            android:id="@+id/ivPicture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/github_user_pict" />
+
+    </io.github.florent37.shapeofview.shapes.CircleView>
 
     <TextView
         android:id="@+id/tvUsername"

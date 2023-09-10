@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:shimmer_auto_start="true"
-        app:shimmer_duration="1000">
-
+        app:shimmer_duration="1000"
+        tools:visibility="gone">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,18 +31,28 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/ivPicturePlaceholder"
+                app:layout_constraintStart_toEndOf="@id/circleViewImageShimmer"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/ivPicturePlaceholder"
+            <io.github.florent37.shapeofview.shapes.CircleView
+                android:id="@+id/circleViewImageShimmer"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_margin="12dp"
-                android:background="#555555"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivPicturePlaceholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#555555"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </io.github.florent37.shapeofview.shapes.CircleView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -50,9 +60,9 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dataLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/dataLayout">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tvUsername"
@@ -64,18 +74,25 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivPicture"
+            app:layout_constraintStart_toEndOf="@id/circleViewImage"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="GitHub Username" />
 
-        <ImageView
-            android:id="@+id/ivPicture"
+        <io.github.florent37.shapeofview.shapes.CircleView
+            android:id="@+id/circleViewImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivPicture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </io.github.florent37.shapeofview.shapes.CircleView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
