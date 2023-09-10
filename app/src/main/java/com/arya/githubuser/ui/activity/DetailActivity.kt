@@ -22,11 +22,9 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // Retrieve data from the Intent
         val user: GithubUser? = intent.getParcelableExtra("user")
         viewModel.fetchGitHubUsers(user?.login.orEmpty())
 
-        // Update the UI elements
         with(binding) {
             tvUsername.text = user?.login
             Glide.with(this@DetailActivity).load(user?.avatar_url).into(ivPicture)

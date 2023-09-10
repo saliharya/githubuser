@@ -12,6 +12,5 @@ data class GithubUser(
     val html_url: String?,
     val followers: Int?,
     val following: Int?
-    // Add other properties as needed
 ) : Parcelable
 
