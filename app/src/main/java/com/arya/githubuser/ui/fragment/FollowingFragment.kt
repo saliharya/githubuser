@@ -50,7 +50,9 @@ class FollowingFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        viewModel.isLoadingLiveData.observe(viewLifecycleOwner) {}
+        viewModel.isLoadingLiveData.observe(viewLifecycleOwner) { isLoading ->
+            adapter?.updateShimmerState(isLoading)
+        }
         viewModel.responseLiveData.observe(viewLifecycleOwner) { followings ->
             followings?.let {
                 followingList.clear()

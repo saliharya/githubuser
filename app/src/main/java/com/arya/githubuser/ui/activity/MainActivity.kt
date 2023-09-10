@@ -50,7 +50,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeLiveData() {
-        viewModel.isLoadingLiveData.observe(this) {}
+        viewModel.isLoadingLiveData.observe(this) { isLoading ->
+            adapter?.updateShimmerState(isLoading)
+        }
         viewModel.responseLiveData.observe(this) { response ->
             response.items.let {
                 list.clear()

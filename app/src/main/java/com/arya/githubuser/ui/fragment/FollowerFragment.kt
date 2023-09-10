@@ -50,7 +50,9 @@ class FollowerFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        viewModel.isLoadingLiveData.observe(viewLifecycleOwner) {}
+        viewModel.isLoadingLiveData.observe(viewLifecycleOwner) { isLoading ->
+            adapter?.updateShimmerState(isLoading)
+        }
         viewModel.responseLiveData.observe(viewLifecycleOwner) { followers ->
             followers?.let {
                 followerList.clear()

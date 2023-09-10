@@ -45,19 +45,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun observeLiveData() {
-        viewModel.isLoadingLiveData.observe(this) {}
         viewModel.responseLiveData.observe(this) { response ->
             with(binding) {
-                tvFollowerCount.text =
-                    getString(
-                        R.string.follower_count,
-                        response.followers ?: 0
-                    )
-                tvFollowingCount.text =
-                    getString(
-                        R.string.following_count,
-                        response.following ?: 0
-                    )
+                tvFollowerCount.text = getString(
+                    R.string.follower_count, response.followers ?: 0
+                )
+                tvFollowingCount.text = getString(
+                    R.string.following_count, response.following ?: 0
+                )
                 setUpViewPager(response.login.orEmpty())
             }
         }
@@ -69,8 +64,7 @@ class DetailActivity : AppCompatActivity() {
     companion object {
         @StringRes
         private val TAB_TITLES = intArrayOf(
-            R.string.following,
-            R.string.follower
+            R.string.following, R.string.follower
         )
     }
 }
