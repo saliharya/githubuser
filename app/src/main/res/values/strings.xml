@@ -11,4 +11,5 @@
     <string name="github_user_pict">Github User Pict</string>
     <string name="search_by_username">Search by username</string>
     <string name="github_user_pict_shimmer">github_user_pict_shimmer</string>
+    <string name="username">Username</string>
 </resources>

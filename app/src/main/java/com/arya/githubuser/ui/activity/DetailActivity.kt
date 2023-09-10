@@ -1,6 +1,7 @@
 package com.arya.githubuser.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -25,32 +26,40 @@ class DetailActivity : AppCompatActivity() {
         val user: GithubUser? = intent.getParcelableExtra("user")
         viewModel.fetchGitHubUsers(user?.login.orEmpty())
 
-        with(binding) {
-            tvUsername.text = user?.login
-            Glide.with(this@DetailActivity).load(user?.avatar_url).into(ivPicture)
-        }
-
+        user?.let { initializeViews(it) }
         observeLiveData()
+    }
+
+    private fun initializeViews(user: GithubUser) {
+        with(binding) {
+            tvUsername.text = user.login
+            Glide.with(this@DetailActivity).load(user.avatar_url).into(ivPicture)
+            setUpViewPager(user.login.orEmpty())
+        }
     }
 
     private fun ActivityDetailBinding.setUpViewPager(username: String) {
         val sectionsPagerAdapter = SectionsPagerAdapter(this@DetailActivity, username)
         viewPager.adapter = sectionsPagerAdapter
         TabLayoutMediator(tabs, viewPager) { tab, position ->
-            tab.text = resources.getString(TAB_TITLES[position])
+            tab.text = getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
     }
 
     private fun observeLiveData() {
+        viewModel.isLoadingLiveData.observe(this) { isLoading ->
+            with(binding) {
+                shimmerLayout.visibility = if (isLoading) View.VISIBLE else View.GONE
+                if (isLoading) shimmerLayout.startShimmer() else shimmerLayout.stopShimmer()
+                dataLayout.visibility = if (isLoading) View.GONE else View.VISIBLE
+            }
+        }
         viewModel.responseLiveData.observe(this) { response ->
             with(binding) {
                 tvName.text = getString(R.string.name, response.name)
                 tvFollowerCount.text = getString(R.string.follower_count, response.followers ?: 0)
-                tvFollowingCount.text = getString(
-                    R.string.following_count, response.following ?: 0
-                )
-                setUpViewPager(response.login.orEmpty())
+                tvFollowingCount.text = getString(R.string.following_count, response.following ?: 0)
             }
         }
         viewModel.errorLiveData.observe(this) { throwable ->
@@ -65,4 +74,3 @@ class DetailActivity : AppCompatActivity() {
         )
     }
 }
-
