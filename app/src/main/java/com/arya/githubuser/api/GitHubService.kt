@@ -37,7 +37,7 @@ interface GitHubService {
     companion object {
         private const val BASE_URL = "https://api.github.com/"
 
-        fun create(apiKey: String): GitHubService {
+        fun create(): GitHubService {
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

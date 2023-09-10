@@ -12,7 +12,7 @@ import retrofit2.Response
 class MainViewModel : ViewModel() {
 
     private val apiKey = "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"
-    private val gitHubService = GitHubService.create(apiKey)
+    private val gitHubService = GitHubService.create()
 
     private val _responseLiveData: MutableLiveData<GitHubResponse> = MutableLiveData()
     val responseLiveData: LiveData<GitHubResponse> = _responseLiveData
@@ -28,8 +28,7 @@ class MainViewModel : ViewModel() {
         val call = gitHubService.searchUsers("Bearer $apiKey", query)
         call.enqueue(object : Callback<GitHubResponse> {
             override fun onResponse(
-                call: Call<GitHubResponse>,
-                response: Response<GitHubResponse>
+                call: Call<GitHubResponse>, response: Response<GitHubResponse>
             ) {
                 _isLoadingLiveData.postValue(false)
                 if (response.isSuccessful) {
