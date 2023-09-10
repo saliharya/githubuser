@@ -45,9 +45,8 @@ class DetailActivity : AppCompatActivity() {
     private fun observeLiveData() {
         viewModel.responseLiveData.observe(this) { response ->
             with(binding) {
-                tvFollowerCount.text = getString(
-                    R.string.follower_count, response.followers ?: 0
-                )
+                tvName.text = getString(R.string.name, response.name)
+                tvFollowerCount.text = getString(R.string.follower_count, response.followers ?: 0)
                 tvFollowingCount.text = getString(
                     R.string.following_count, response.following ?: 0
                 )
