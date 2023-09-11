@@ -11,7 +11,7 @@ import retrofit2.Response
 
 abstract class BaseFollowingFollowerViewModel : ViewModel() {
     protected val apiKey = "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"
-    protected val gitHubService = GitHubService.create()
+    protected val gitHubService = GitHubService.create(apiKey)
 
     private val _responseLiveData: MutableLiveData<List<GithubUser>> = MutableLiveData()
     val responseLiveData: LiveData<List<GithubUser>> = _responseLiveData

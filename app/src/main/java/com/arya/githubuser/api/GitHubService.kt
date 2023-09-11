@@ -1,6 +1,7 @@
 package com.arya.githubuser.api
 
 import com.arya.githubuser.model.GithubUser
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -37,10 +38,17 @@ interface GitHubService {
     companion object {
         private const val BASE_URL = "https://api.github.com/"
 
-        fun create(): GitHubService {
+        fun create(apiKey: String): GitHubService {
+            val authInterceptor = AuthInterceptor(apiKey)
+
+            val httpClient = OkHttpClient.Builder()
+                .addInterceptor(authInterceptor) // Menambahkan Interceptor
+                .build()
+
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient) // Menggunakan OkHttpClient yang telah dikonfigurasi
                 .build()
 
             return retrofit.create(GitHubService::class.java)

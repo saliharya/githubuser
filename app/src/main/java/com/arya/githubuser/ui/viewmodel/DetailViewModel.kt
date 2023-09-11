@@ -13,7 +13,7 @@ import retrofit2.Response
 class DetailViewModel : ViewModel() {
 
     private val apiKey = "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"
-    private val gitHubService = GitHubService.create()
+    private val gitHubService = GitHubService.create(apiKey)
 
     private val _responseLiveData: MutableLiveData<GithubUser> = MutableLiveData()
     val responseLiveData: LiveData<GithubUser> = _responseLiveData
