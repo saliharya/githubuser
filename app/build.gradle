@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
     id("kotlin-parcelize")
 }
 
@@ -25,11 +26,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     viewBinding {
         enabled = true
@@ -55,4 +56,6 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.6.1"
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'io.github.florent37:shapeofview:1.4.7'
+    implementation 'androidx.room:room-runtime:2.3.0'
+    kapt 'androidx.room:room-compiler:2.3.0'
 }

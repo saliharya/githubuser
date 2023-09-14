@@ -1,10 +1,13 @@
 package com.arya.githubuser.ui.activity
 
+import android.app.Application
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.arya.githubuser.R
 import com.arya.githubuser.databinding.ActivityDetailBinding
 import com.arya.githubuser.model.GithubUser
@@ -23,10 +26,9 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val user: GithubUser? = intent.getParcelableExtra("user")
-        viewModel.fetchGitHubUsers(user?.login.orEmpty())
+        (applicationContext as? Application)?.let { viewModel.initRepository(it) }
 
-        user?.let { initializeViews(it) }
+        viewModel.getFavoriteUsers()
         observeLiveData()
     }
 
@@ -35,6 +37,9 @@ class DetailActivity : AppCompatActivity() {
             tvUsername.text = user.login
             Glide.with(this@DetailActivity).load(user.avatar_url).into(ivPicture)
             setUpViewPager(user.login.orEmpty())
+            btnFavorite.setOnClickListener {
+                viewModel.toggleFavoriteUser()
+            }
         }
     }
 
@@ -57,13 +62,36 @@ class DetailActivity : AppCompatActivity() {
         }
         viewModel.responseLiveData.observe(this) { response ->
             with(binding) {
-                tvName.text = getString(R.string.name, response.name)
+                tvName.text = getString(R.string.name, response.name ?: "-")
                 tvFollowerCount.text = getString(R.string.follower_count, response.followers ?: 0)
                 tvFollowingCount.text = getString(R.string.following_count, response.following ?: 0)
+                btnFavorite.isVisible = true
+                btnFavorite.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this@DetailActivity,
+                        if (response.isFavorite) {
+                            R.drawable.baseline_star_24_red
+                        } else {
+                            R.drawable.baseline_star_24_white
+                        }
+                    )
+                )
             }
         }
         viewModel.errorLiveData.observe(this) { throwable ->
             showToast(throwable.message)
+        }
+        viewModel.favoriteUsersLiveData?.observe(this) { favoriteUsers ->
+            val user: GithubUser? = intent.getParcelableExtra("user")
+            val isFavorite = favoriteUsers.any {
+                it.id == user?.id
+            }
+            user?.isFavorite = isFavorite
+            user?.let {
+                viewModel.setUser(it)
+                initializeViews(it)
+            }
+            viewModel.fetchGitHubUsers(user?.login.orEmpty())
         }
     }
 

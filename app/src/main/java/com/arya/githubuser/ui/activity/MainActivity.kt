@@ -34,6 +34,11 @@ class MainActivity : AppCompatActivity() {
             }
             rvGithubUsers.adapter = adapter
 
+            btnFavorite.setOnClickListener {
+                val intent = Intent(this@MainActivity, FavoriteActivity::class.java)
+                startActivity(intent)
+            }
+
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (!query.isNullOrBlank()) {
