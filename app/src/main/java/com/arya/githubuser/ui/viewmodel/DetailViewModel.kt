@@ -39,7 +39,7 @@ class DetailViewModel : ViewModel() {
 
     fun fetchGitHubUsers(username: String) {
         _isLoadingLiveData.postValue(true)
-        val call = gitHubService.getUserDetail("Bearer $apiKey", username)
+        val call = gitHubService.getUserDetail(username)
         call.enqueue(object : Callback<GithubUser> {
             override fun onResponse(
                 call: Call<GithubUser>, response: Response<GithubUser>

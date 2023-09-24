@@ -5,7 +5,7 @@ import retrofit2.Call
 
 class FollowerViewModel : BaseFollowingFollowerViewModel() {
     override fun callApi(username: String): Call<List<GithubUser>> {
-        return gitHubService.getFollowers(apiKey, username)
+        return gitHubService.getFollowers(username)
     }
 
 }
