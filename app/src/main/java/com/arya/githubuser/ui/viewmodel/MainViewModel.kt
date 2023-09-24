@@ -25,7 +25,7 @@ class MainViewModel : ViewModel() {
 
     fun fetchGitHubUsers(query: String) {
         _isLoadingLiveData.postValue(true)
-        val call = gitHubService.searchUsers("Bearer $apiKey", query)
+        val call = gitHubService.searchUsers(query)
         call.enqueue(object : Callback<GitHubResponse> {
             override fun onResponse(
                 call: Call<GitHubResponse>, response: Response<GitHubResponse>
