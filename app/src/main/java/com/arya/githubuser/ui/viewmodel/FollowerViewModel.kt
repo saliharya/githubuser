@@ -1,11 +1,20 @@
 package com.arya.githubuser.ui.viewmodel
 
-import com.arya.githubuser.model.GithubUser
-import retrofit2.Call
-
 class FollowerViewModel : BaseFollowingFollowerViewModel() {
-    override fun callApi(username: String): Call<List<GithubUser>> {
-        return gitHubService.getFollowers(username)
+    override fun fetchData(username: String) {
+        _isLoadingLiveData.postValue(true)
+
+        githubRepository.getFollowers(
+            username,
+            onSuccess = { response ->
+                _isLoadingLiveData.postValue(false)
+                _responseLiveData.postValue(response)
+            },
+            onFailure = {
+                _isLoadingLiveData.postValue(false)
+                _errorLiveData.postValue(it)
+            }
+        )
     }
 
 }

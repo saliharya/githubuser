@@ -6,14 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arya.githubuser.api.GitHubService
-import com.arya.githubuser.database.FavoriteUserRepository
 import com.arya.githubuser.model.GithubUser
+import com.arya.githubuser.repository.FavoriteUserRepository
+import com.arya.githubuser.repository.GithubRepository
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class DetailViewModel : ViewModel() {
+
+    private val githubRepository = GithubRepository()
 
     private val apiKey = "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"
     private val gitHubService = GitHubService.create(apiKey)
@@ -40,29 +40,23 @@ class DetailViewModel : ViewModel() {
         _responseLiveData.postValue(user)
     }
 
-    fun fetchGitHubUsers(username: String) {
+    fun fetchGitHubUser(username: String) {
         _isLoadingLiveData.postValue(true)
-        val call = gitHubService.getUserDetail(username)
-        call.enqueue(object : Callback<GithubUser> {
-            override fun onResponse(
-                call: Call<GithubUser>, response: Response<GithubUser>
-            ) {
+        githubRepository.fetchGithubUserDetail(
+            username,
+            onSuccess = { response ->
                 _isLoadingLiveData.postValue(false)
-                if (response.isSuccessful) {
-                    val gitHubResponse = response.body() ?: return
-                    val isFavorite = favoriteUsersLiveData?.value?.any {
-                        gitHubResponse.id == it.id
-                    } ?: false
-                    gitHubResponse.isFavorite = isFavorite
-                    _responseLiveData.postValue(gitHubResponse)
-                }
-            }
-
-            override fun onFailure(call: Call<GithubUser>, t: Throwable) {
+                val isFavorite = favoriteUsersLiveData.value?.any {
+                    response?.id == it.id
+                } ?: false
+                response?.isFavorite = isFavorite
+                _responseLiveData.postValue(response)
+            },
+            onFailure = {
                 _isLoadingLiveData.postValue(false)
-                _errorLiveData.postValue(t)
+                _errorLiveData.postValue(it)
             }
-        })
+        )
     }
 
     fun getFavoriteUsers() {

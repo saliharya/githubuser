@@ -91,7 +91,7 @@ class DetailActivity : AppCompatActivity() {
                 viewModel.setUser(it)
                 initializeViews(it)
             }
-            viewModel.fetchGitHubUsers(user?.login.orEmpty())
+            viewModel.fetchGitHubUser(user?.login.orEmpty())
         }
     }
 

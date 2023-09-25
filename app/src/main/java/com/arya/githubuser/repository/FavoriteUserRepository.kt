@@ -1,7 +1,8 @@
-package com.arya.githubuser.database
+package com.arya.githubuser.repository
 
 import android.app.Application
-import androidx.lifecycle.LiveData
+import com.arya.githubuser.database.FavoriteUserDao
+import com.arya.githubuser.database.FavoriteUserRoomDatabase
 import com.arya.githubuser.model.GithubUser
 
 class FavoriteUserRepository(application: Application) {

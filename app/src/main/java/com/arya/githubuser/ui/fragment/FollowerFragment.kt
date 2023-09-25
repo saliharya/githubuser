@@ -6,7 +6,6 @@ import com.arya.githubuser.ui.viewmodel.FollowerViewModel
 
 class FollowerFragment : BaseFollowingFollowerFragment() {
     override val viewModel by viewModels<FollowerViewModel>()
-
     override fun fetchData(username: String) {
         viewModel.fetchData(username)
     }
