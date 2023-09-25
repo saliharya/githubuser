@@ -8,8 +8,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class GithubRepository {
-    private val apiKey = "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"
-    private val gitHubService = GitHubService.create(apiKey)
+    private val gitHubService = GitHubService.create()
 
     fun fetchGithubUsers(
         query: String,

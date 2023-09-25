@@ -15,9 +15,6 @@ class DetailViewModel : ViewModel() {
 
     private val githubRepository = GithubRepository()
 
-    private val apiKey = "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"
-    private val gitHubService = GitHubService.create(apiKey)
-
     private var mFavoriteUserRepository: FavoriteUserRepository? = null
 
     private val _responseLiveData: MutableLiveData<GithubUser> = MutableLiveData()

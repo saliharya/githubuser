@@ -49,7 +49,7 @@ class ListGitHubUserAdapter(
             }
 
             tvUsername.text = user?.login
-            Glide.with(root.context).load(user?.avatar_url).into(ivPicture)
+            Glide.with(root.context).load(user?.avatarUrl).into(ivPicture)
         }
     }
 }

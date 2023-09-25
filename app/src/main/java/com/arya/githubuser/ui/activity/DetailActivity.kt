@@ -35,7 +35,7 @@ class DetailActivity : AppCompatActivity() {
     private fun initializeViews(user: GithubUser) {
         with(binding) {
             tvUsername.text = user.login
-            Glide.with(this@DetailActivity).load(user.avatar_url).into(ivPicture)
+            Glide.with(this@DetailActivity).load(user.avatarUrl).into(ivPicture)
             setUpViewPager(user.login.orEmpty())
             btnFavorite.setOnClickListener {
                 viewModel.toggleFavoriteUser()

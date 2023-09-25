@@ -24,10 +24,11 @@ interface GitHubService {
 
     companion object {
         private const val BASE_URL = "https://api.github.com/"
+        private const val API_KEY = "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"
 
-        fun create(apiKey: String): GitHubService {
+        fun create(): GitHubService {
             val httpClient = OkHttpClient.Builder()
-                .addInterceptor(AuthInterceptor(apiKey))
+                .addInterceptor(AuthInterceptor(API_KEY))
                 .build()
 
             return Retrofit.Builder()
