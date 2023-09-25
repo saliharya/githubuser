@@ -12,7 +12,7 @@ class FavoriteUserRepository(application: Application) {
         mFavoriteUserDao = db.favoriteUserDao()
     }
 
-    fun getAllFavoriteUsers(): LiveData<List<GithubUser>> = mFavoriteUserDao.getFavoriteUsers()
+    suspend fun getAllFavoriteUsers(): List<GithubUser> = mFavoriteUserDao.getFavoriteUsers()
 
     suspend fun insert(githubUser: GithubUser) {
         mFavoriteUserDao.insertFavoriteUser(githubUser)

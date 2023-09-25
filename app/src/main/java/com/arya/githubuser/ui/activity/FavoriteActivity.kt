@@ -25,11 +25,20 @@ class FavoriteActivity : AppCompatActivity() {
 
         binding.rvFavorite.setHasFixedSize(true)
 
+        observeLiveData()
+    }
+
+    override fun onResume() {
+        super.onResume()
         fetchData()
     }
 
     private fun fetchData() {
-        viewModel.getAllFavoriteUsers()?.observe(this) {
+        viewModel.getAllFavoriteUsers()
+    }
+
+    private fun observeLiveData() {
+        viewModel.favoriteUsersLiveData.observe(this) {
             it?.let {
                 favoriteList.clear()
                 favoriteList.addAll(it)

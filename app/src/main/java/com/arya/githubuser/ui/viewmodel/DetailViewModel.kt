@@ -23,7 +23,8 @@ class DetailViewModel : ViewModel() {
     private val _responseLiveData: MutableLiveData<GithubUser> = MutableLiveData()
     val responseLiveData: LiveData<GithubUser> = _responseLiveData
 
-    var favoriteUsersLiveData: LiveData<List<GithubUser>>? = null
+    private val _favoriteUsersLiveData: MutableLiveData<List<GithubUser>> = MutableLiveData()
+    var favoriteUsersLiveData: LiveData<List<GithubUser>> = _favoriteUsersLiveData
 
     private val _errorLiveData: MutableLiveData<Throwable> = MutableLiveData()
     val errorLiveData: LiveData<Throwable> = _errorLiveData
@@ -65,12 +66,14 @@ class DetailViewModel : ViewModel() {
     }
 
     fun getFavoriteUsers() {
-        favoriteUsersLiveData = mFavoriteUserRepository?.getAllFavoriteUsers()
+        viewModelScope.launch {
+            _favoriteUsersLiveData.postValue(mFavoriteUserRepository?.getAllFavoriteUsers())
+        }
     }
 
     fun toggleFavoriteUser() {
-        responseLiveData.value?.let { user ->
-            viewModelScope.launch {
+        viewModelScope.launch {
+            responseLiveData.value?.let { user ->
                 if (user.isFavorite) mFavoriteUserRepository?.delete(user)
                 else mFavoriteUserRepository?.insert(user)
 

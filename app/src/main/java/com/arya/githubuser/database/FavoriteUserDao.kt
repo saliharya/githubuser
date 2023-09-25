@@ -11,7 +11,7 @@ import com.arya.githubuser.model.GithubUser
 @Dao
 interface FavoriteUserDao {
     @Query("SELECT * FROM GithubUser")
-    fun getFavoriteUsers(): LiveData<List<GithubUser>>
+    suspend fun getFavoriteUsers(): List<GithubUser>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFavoriteUser(user: GithubUser)
