@@ -4,9 +4,11 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.arya.githubuser.api.GitHubService
 import com.arya.githubuser.database.FavoriteUserRepository
 import com.arya.githubuser.model.GithubUser
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -68,13 +70,17 @@ class DetailViewModel : ViewModel() {
 
     fun toggleFavoriteUser() {
         responseLiveData.value?.let { user ->
-            if (user.isFavorite) mFavoriteUserRepository?.delete(user)
-            else mFavoriteUserRepository?.insert(user)
+            viewModelScope.launch {
+                if (user.isFavorite) mFavoriteUserRepository?.delete(user)
+                else mFavoriteUserRepository?.insert(user)
 
-            user.isFavorite = !user.isFavorite
+                user.isFavorite = !user.isFavorite
 
-            _responseLiveData.postValue(user)
+                _responseLiveData.postValue(user)
+            }
         }
+
     }
+
 
 }
