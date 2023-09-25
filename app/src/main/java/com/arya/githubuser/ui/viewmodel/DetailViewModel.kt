@@ -69,8 +69,8 @@ class DetailViewModel : ViewModel() {
     }
 
     fun toggleFavoriteUser() {
-        responseLiveData.value?.let { user ->
-            viewModelScope.launch {
+        viewModelScope.launch {
+            responseLiveData.value?.let { user ->
                 if (user.isFavorite) mFavoriteUserRepository?.delete(user)
                 else mFavoriteUserRepository?.insert(user)
 
