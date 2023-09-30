@@ -6,11 +6,13 @@
     <string name="follower">Follower</string>
     <string name="following">Following</string>
     <string name="name">Name: %s</string>
-    <string name="follower_count">Follower: %d</string>
-    <string name="following_count">Following: %d</string>
+    <string name="follower_count">%d Followers</string>
+    <string name="following_count">%d Followings</string>
     <string name="github_user_pict">Github User Pict</string>
     <string name="search_by_username">Search by username</string>
     <string name="github_user_pict_shimmer">github_user_pict_shimmer</string>
     <string name="username">Username</string>
     <string name="btnfavorite">btnFavorite</string>
+    <string name="followings">Followings</string>
+    <string name="followers">Followers</string>
 </resources>

@@ -63,16 +63,20 @@ class DetailActivity : AppCompatActivity() {
         }
         viewModel.responseLiveData.observe(this) { response ->
             with(binding) {
-                tvName.text = getString(R.string.name, response.name ?: "-")
+                tvName.text = response.name ?: "-"
                 tvFollowerCount.text = getString(R.string.follower_count, response.followers ?: 0)
                 tvFollowingCount.text = getString(R.string.following_count, response.following ?: 0)
                 btnFavorite.isVisible = true
 
                 if (response.isFavorite) {
-                    val color = ContextCompat.getColor(this@DetailActivity, R.color.red) // replace with your actual color resource for favorite state
+                    val color = ContextCompat.getColor(
+                        this@DetailActivity, R.color.red
+                    ) // replace with your actual color resource for favorite state
                     btnFavorite.imageTintList = ColorStateList.valueOf(color)
                 } else {
-                    val color = ContextCompat.getColor(this@DetailActivity, R.color.white) // replace with your actual color resource for non-favorite state
+                    val color = ContextCompat.getColor(
+                        this@DetailActivity, R.color.white
+                    ) // replace with your actual color resource for non-favorite state
                     btnFavorite.imageTintList = ColorStateList.valueOf(color)
                 }
             }

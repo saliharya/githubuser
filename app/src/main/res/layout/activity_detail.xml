@@ -1,201 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.DetailActivity">
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmerLayout"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Your existing layout -->
         <LinearLayout
+            android:id="@+id/dataLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <io.github.florent37.shapeofview.shapes.CircleView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_gravity="center"
                 android:layout_margin="28dp">
 
                 <ImageView
-                    android:id="@+id/ivPictureShimmer"
+                    android:id="@+id/ivPicture"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#FF555555"
-                    android:contentDescription="@string/github_user_pict_shimmer" />
-
+                    android:contentDescription="@string/github_user_pict" />
             </io.github.florent37.shapeofview.shapes.CircleView>
 
             <TextView
-                android:id="@+id/tvUsernameShimmer"
-                android:layout_width="match_parent"
+                android:id="@+id/tvUsername"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="12dp"
-                android:background="#FF555555"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="12dp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <View
-                android:id="@+id/divider4Shimmer"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="16dp"
-                android:background="#E0E0E0" />
-
             <TextView
-                android:id="@+id/tvNameShimmer"
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="12dp" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="12dp"
-                android:background="#FF555555"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:gravity="center">
 
-            <View
-                android:id="@+id/dividerShimmer"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="16dp"
-                android:background="#E0E0E0" />
+                <TextView
+                    android:id="@+id/tvFollowingCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="12dp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvFollowingCountShimmer"
+                <TextView
+                    android:id="@+id/tv_followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvFollowerCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="12dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_following"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="12dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="12dp"
-                android:background="#FF555555"
-                android:textColor="#616161"
-                android:textSize="14sp" />
+                android:background="@color/white"
+                app:tabTextColor="@color/black" />
 
-            <View
-                android:id="@+id/divider2Shimmer"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="16dp"
-                android:background="#E0E0E0" />
-
-            <TextView
-                android:id="@+id/tvFollowerCountShimmer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="12dp"
-                android:background="#FF555555"
-                android:textColor="#616161"
-                android:textSize="14sp" />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
-    </com.facebook.shimmer.ShimmerFrameLayout>
 
-    <LinearLayout
-        android:id="@+id/dataLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <!-- Shimmer layout overlay -->
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <io.github.florent37.shapeofview.shapes.CircleView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:layout_margin="28dp">
-
-            <ImageView
-                android:id="@+id/ivPicture"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="@string/github_user_pict" />
+                android:orientation="vertical">
 
-        </io.github.florent37.shapeofview.shapes.CircleView>
+                <io.github.florent37.shapeofview.shapes.CircleView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="28dp">
 
-        <TextView
-            android:id="@+id/tvUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/username"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/ivPictureShimmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/github_user_pict"
+                        android:src="@drawable/baseline_circle_24" />
+                </io.github.florent37.shapeofview.shapes.CircleView>
 
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginTop="16dp"
-            android:background="#E0E0E0" />
+                <TextView
+                    android:id="@+id/tvUsernameShimmer"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tvNameShimmer"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="12dp"
+                    android:background="@color/black" />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginTop="16dp"
-            android:background="#E0E0E0" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
-        <TextView
-            android:id="@+id/tvFollowingCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
-            android:textColor="#616161"
-            android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tvFollowingCountShimmer"
+                        android:layout_width="16dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="12dp"
+                        android:background="@color/black"
+                        android:textStyle="bold" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginTop="16dp"
-            android:background="#E0E0E0" />
+                    <TextView
+                        android:id="@+id/tv_followersShimmer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="12dp"
+                        android:text="@string/followings"
+                        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvFollowerCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
-            android:textColor="#616161"
-            android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tvFollowerCountShimmer"
+                        android:layout_width="16dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="12dp"
+                        android:background="@color/black"
+                        android:textStyle="bold" />
 
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginTop="16dp"
-            android:background="#E0E0E0" />
+                    <TextView
+                        android:id="@+id/tv_followingShimmer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="12dp"
+                        android:text="@string/followers"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:tabTextColor="@color/white" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/tv_tab1Shimmer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        android:text="@string/followings"
+                        android:textStyle="bold" />
 
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_tab2Shimmer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="12dp"
+                        android:text="@string/followers"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:id="@+id/tvUsernamePlaceholder0"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:background="#FF555555"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/circleViewImageShimmer0"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <io.github.florent37.shapeofview.shapes.CircleView
+                        android:id="@+id/circleViewImageShimmer0"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/ivPicturePlaceholder0"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#555555"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </io.github.florent37.shapeofview.shapes.CircleView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvUsernamePlaceholder1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="12dp"
+                        android:background="#FF555555"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/circleViewImageShimmer1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <io.github.florent37.shapeofview.shapes.CircleView
+                        android:id="@+id/circleViewImageShimmer1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="12dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/ivPicturePlaceholder1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#555555"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </io.github.florent37.shapeofview.shapes.CircleView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnFavorite"
@@ -204,27 +299,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:contentDescription="@string/btnfavorite"
-        android:padding="10dp"
         android:src="@drawable/baseline_favorite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/white" />
 
-    <!--    <io.github.florent37.shapeofview.shapes.CircleView-->
-    <!--        android:layout_width="80dp"-->
-    <!--        android:layout_height="80dp"-->
-    <!--        android:layout_gravity="bottom|end"-->
-    <!--        android:layout_margin="16dp"-->
-    <!--        android:backgroundTint="?attr/colorPrimary"-->
-    <!--        android:elevation="8dp">-->
-
-    <!--        <ImageView-->
-    <!--            android:id="@+id/btnFavorite"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:contentDescription="@string/btnfavorite"-->
-    <!--            android:padding="10dp"-->
-    <!--            android:visibility="gone"-->
-    <!--            tools:visibility="visible" />-->
-
-    <!--    </io.github.florent37.shapeofview.shapes.CircleView>-->
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
