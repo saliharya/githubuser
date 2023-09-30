@@ -61,6 +61,12 @@ abstract class BaseFollowingFollowerFragment : Fragment() {
                 followerList.clear()
                 followerList.addAll(it)
                 adapter?.notifyDataSetChanged()
+
+                if (followerList.isEmpty()) {
+                    binding.tvNoData.visibility = View.VISIBLE
+                } else {
+                    binding.tvNoData.visibility = View.GONE
+                }
             }
         }
         viewModel.errorLiveData.observe(viewLifecycleOwner) { throwable ->

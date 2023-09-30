@@ -2,6 +2,7 @@ package com.arya.githubuser.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -63,6 +64,17 @@ class MainActivity : AppCompatActivity() {
                 list.clear()
                 list.addAll(it)
                 adapter?.notifyDataSetChanged()
+            }
+
+            val noDataTextView = binding.tvNoData
+            val recyclerView = binding.rvGithubUsers
+
+            if (response.totalCount == 0) {
+                noDataTextView.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                noDataTextView.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
             }
         }
         viewModel.errorLiveData.observe(this) { throwable ->

@@ -32,18 +32,31 @@
 
             <ImageButton
                 android:id="@+id/btnFavorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="@string/btn_favorite"
                 android:src="@drawable/baseline_favorite" />
 
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/tvNoData"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_data_available"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvGithubUsers"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

@@ -12,7 +12,8 @@
     <string name="search_by_username">Search by username</string>
     <string name="github_user_pict_shimmer">github_user_pict_shimmer</string>
     <string name="username">Username</string>
-    <string name="btnfavorite">btnFavorite</string>
+    <string name="btn_favorite">btnFavorite</string>
     <string name="followings">Followings</string>
     <string name="followers">Followers</string>
+    <string name="no_data_available">No data</string>
 </resources>

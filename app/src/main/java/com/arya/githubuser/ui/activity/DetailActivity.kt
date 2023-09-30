@@ -71,12 +71,12 @@ class DetailActivity : AppCompatActivity() {
                 if (response.isFavorite) {
                     val color = ContextCompat.getColor(
                         this@DetailActivity, R.color.red
-                    ) // replace with your actual color resource for favorite state
+                    )
                     btnFavorite.imageTintList = ColorStateList.valueOf(color)
                 } else {
                     val color = ContextCompat.getColor(
                         this@DetailActivity, R.color.white
-                    ) // replace with your actual color resource for non-favorite state
+                    )
                     btnFavorite.imageTintList = ColorStateList.valueOf(color)
                 }
             }
