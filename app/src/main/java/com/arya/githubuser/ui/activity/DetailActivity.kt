@@ -1,6 +1,7 @@
 package com.arya.githubuser.ui.activity
 
 import android.app.Application
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -66,16 +67,14 @@ class DetailActivity : AppCompatActivity() {
                 tvFollowerCount.text = getString(R.string.follower_count, response.followers ?: 0)
                 tvFollowingCount.text = getString(R.string.following_count, response.following ?: 0)
                 btnFavorite.isVisible = true
-                btnFavorite.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        this@DetailActivity,
-                        if (response.isFavorite) {
-                            R.drawable.baseline_star_24_red
-                        } else {
-                            R.drawable.baseline_star_24_white
-                        }
-                    )
-                )
+
+                if (response.isFavorite) {
+                    val color = ContextCompat.getColor(this@DetailActivity, R.color.red) // replace with your actual color resource for favorite state
+                    btnFavorite.imageTintList = ColorStateList.valueOf(color)
+                } else {
+                    val color = ContextCompat.getColor(this@DetailActivity, R.color.white) // replace with your actual color resource for non-favorite state
+                    btnFavorite.imageTintList = ColorStateList.valueOf(color)
+                }
             }
         }
         viewModel.errorLiveData.observe(this) { throwable ->

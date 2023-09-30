@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -198,23 +197,34 @@
 
     </LinearLayout>
 
-    <io.github.florent37.shapeofview.shapes.CircleView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:backgroundTint="?attr/colorPrimary"
-        android:elevation="8dp">
+        android:contentDescription="@string/btnfavorite"
+        android:padding="10dp"
+        android:src="@drawable/baseline_favorite"
+        app:tint="@color/white" />
 
-        <ImageView
-            android:id="@+id/btnFavorite"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/btnfavorite"
-            android:padding="10dp"
-            android:visibility="gone"
-            tools:visibility="visible" />
+    <!--    <io.github.florent37.shapeofview.shapes.CircleView-->
+    <!--        android:layout_width="80dp"-->
+    <!--        android:layout_height="80dp"-->
+    <!--        android:layout_gravity="bottom|end"-->
+    <!--        android:layout_margin="16dp"-->
+    <!--        android:backgroundTint="?attr/colorPrimary"-->
+    <!--        android:elevation="8dp">-->
 
-    </io.github.florent37.shapeofview.shapes.CircleView>
+    <!--        <ImageView-->
+    <!--            android:id="@+id/btnFavorite"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:contentDescription="@string/btnfavorite"-->
+    <!--            android:padding="10dp"-->
+    <!--            android:visibility="gone"-->
+    <!--            tools:visibility="visible" />-->
+
+    <!--    </io.github.florent37.shapeofview.shapes.CircleView>-->
 
 </FrameLayout>
