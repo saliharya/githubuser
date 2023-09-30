@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             response.items.let {
                 list.clear()
                 list.addAll(it)
-                adapter?.notifyDataSetChanged()
+                adapter?.updateData(list)
             }
 
             val noDataTextView = binding.tvNoData
