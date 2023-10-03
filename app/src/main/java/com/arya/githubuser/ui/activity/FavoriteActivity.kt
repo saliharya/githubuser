@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.arya.githubuser.R
 import com.arya.githubuser.databinding.ActivityFavoriteBinding
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.ui.adapter.ListGitHubUserAdapter
 import com.arya.githubuser.ui.viewmodel.FavoriteViewModel
-import com.arya.githubuser.utils.ThemeUtils
 
 
 class FavoriteActivity : AppCompatActivity() {
@@ -19,16 +17,8 @@ class FavoriteActivity : AppCompatActivity() {
     private val favoriteList = ArrayList<GithubUser>()
     private var adapter: ListGitHubUserAdapter? = null
     private val viewModel by viewModels<FavoriteViewModel>()
-    private val sharedPreferences by lazy { getSharedPreferences("ThemePref", MODE_PRIVATE) }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (ThemeUtils.isDarkModeEnabled(sharedPreferences)) {
-            setTheme(R.style.Theme_GithubUser_Dark)
-        } else {
-            setTheme(R.style.Theme_GithubUser)
-        }
-
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -63,6 +53,7 @@ class FavoriteActivity : AppCompatActivity() {
                 } else {
                     noDataTextView.visibility = View.GONE
                     binding.rvFavorite.visibility = View.VISIBLE
+                }
 
                     adapter = ListGitHubUserAdapter(favoriteList) { user ->
                         val intent = Intent(this, DetailActivity::class.java)
@@ -73,7 +64,6 @@ class FavoriteActivity : AppCompatActivity() {
                     }
                     binding.rvFavorite.adapter = adapter
                 }
-            }
         }
     }
 }

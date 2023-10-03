@@ -1,5 +1,6 @@
 package com.arya.githubuser.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -37,6 +38,7 @@ class ListGitHubUserAdapter(
         diffResult.dispatchUpdatesTo(this)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateShimmerState(isLoading: Boolean) {
         this.isLoading = isLoading
         notifyDataSetChanged()

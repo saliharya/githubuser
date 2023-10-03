@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.arya.githubuser.api.GitHubService
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.repository.FavoriteUserRepository
 import com.arya.githubuser.repository.GithubRepository
@@ -58,7 +57,7 @@ class DetailViewModel : ViewModel() {
 
     fun getFavoriteUsers() {
         viewModelScope.launch {
-            _favoriteUsersLiveData.postValue(mFavoriteUserRepository?.getAllFavoriteUsers())
+            _favoriteUsersLiveData.postValue(mFavoriteUserRepository?.getFavoriteUsers())
         }
     }
 

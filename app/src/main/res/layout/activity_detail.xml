@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/background"
     tools:context=".ui.activity.DetailActivity">
 
     <FrameLayout
@@ -37,9 +36,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="12dp"
-                android:textColor="?android:textColorPrimary"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="?android:textColorPrimary"/>
 
             <TextView
                 android:id="@+id/tvName"
@@ -47,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="12dp"
-                android:textColor="?android:textColorPrimary" />
+                android:textColor="?android:textColorPrimary"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -60,8 +59,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-                    android:textColor="?android:textColorPrimary"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="?android:textColorPrimary"/>
 
                 <TextView
                     android:id="@+id/tv_followers"
@@ -69,8 +68,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-                    android:textColor="?android:textColorPrimary"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="?android:textColorPrimary"/>
 
                 <TextView
                     android:id="@+id/tvFollowerCount"
@@ -78,8 +77,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-                    android:textColor="?android:textColorPrimary"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="?android:textColorPrimary"/>
 
                 <TextView
                     android:id="@+id/tv_following"
@@ -87,18 +86,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-                    android:textColor="?android:textColorPrimary"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="?android:textColorPrimary"/>
             </LinearLayout>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
-                app:tabIndicatorColor="?attr/colorSecondary"
-                app:tabIndicatorHeight="4dp"
-                app:tabTextColor="?android:textColorPrimary" />
+                android:background="?attr/colorAccent"
+                app:tabTextColor="?attr/colorPrimary" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"
@@ -138,7 +135,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="12dp"
-                    android:background="@color/black"
+                    android:background="@color/dark_secondary"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -148,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-                    android:background="@color/black" />
+                    android:background="@color/dark_secondary" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -161,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="12dp"
-                        android:background="@color/black"
+                        android:background="@color/dark_secondary"
                         android:textStyle="bold" />
 
                     <TextView
@@ -179,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="12dp"
-                        android:background="@color/black"
+                        android:background="@color/dark_secondary"
                         android:textStyle="bold" />
 
                     <TextView
@@ -225,7 +222,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="12dp"
                         android:background="#FF555555"
-                        android:textColor="@color/black"
+                        android:textColor="@color/dark_secondary"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -265,7 +262,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="12dp"
                         android:background="#FF555555"
-                        android:textColor="@color/black"
+                        android:textColor="@color/dark_secondary"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -305,12 +302,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:background="?attr/colorSecondary"
         android:contentDescription="@string/btn_favorite"
         android:src="@drawable/baseline_favorite"
-        app:backgroundTint="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
+        android:backgroundTint="?attr/colorOnSecondary"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,5 +17,5 @@
     <string name="followers">Followers</string>
     <string name="no_data_available">No data</string>
     <string name="dark_mode">Dark Mode</string>
-    <string name="no_favorite_user">No favorite user</string>
+    <string name="no_favorite_user">No Favorite User</string>
 </resources>

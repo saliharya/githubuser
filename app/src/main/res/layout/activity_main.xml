@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/background"
     tools:context=".ui.activity.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -20,13 +19,12 @@
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="0dp"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 app:iconifiedByDefault="false"
-                app:queryHint="@string/search_by_username"
-                style="@style/SearchViewStyle"
-                />
+                app:queryHint="@string/search_by_username" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -34,12 +32,15 @@
                 android:layout_marginEnd="8dp"
                 android:orientation="vertical">
 
-                <Switch
-                    android:id="@+id/switchDarkMode"
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -52,9 +53,8 @@
                 android:id="@+id/btnFavorite"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_gravity="end"
+                android:layout_gravity="center"
                 android:layout_marginEnd="8dp"
-                android:background="?attr/colorSecondary"
                 android:contentDescription="@string/btn_favorite"
                 android:src="@drawable/baseline_favorite" />
         </LinearLayout>

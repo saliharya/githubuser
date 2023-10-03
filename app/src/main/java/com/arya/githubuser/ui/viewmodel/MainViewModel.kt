@@ -3,10 +3,14 @@ package com.arya.githubuser.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.arya.githubuser.api.GitHubResponse
+import com.arya.githubuser.datastore.SettingPreferences
 import com.arya.githubuser.repository.GithubRepository
+import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val pref: SettingPreferences) : ViewModel() {
 
     private val githubRepository = GithubRepository()
 
@@ -18,6 +22,16 @@ class MainViewModel : ViewModel() {
 
     private val _isLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
     val isLoadingLiveData: LiveData<Boolean> = _isLoadingLiveData
+
+    fun getThemeSettings(): LiveData<Boolean> {
+        return pref.getThemeSetting().asLiveData()
+    }
+
+    fun saveThemeSetting(isDarkModeActive: Boolean) {
+        viewModelScope.launch {
+            pref.saveThemeSetting(isDarkModeActive)
+        }
+    }
 
     fun fetchGitHubUsers(query: String) {
         _isLoadingLiveData.postValue(true)

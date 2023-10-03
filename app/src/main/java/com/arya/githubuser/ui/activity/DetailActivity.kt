@@ -14,8 +14,6 @@ import com.arya.githubuser.databinding.ActivityDetailBinding
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.ui.adapter.SectionsPagerAdapter
 import com.arya.githubuser.ui.viewmodel.DetailViewModel
-import com.arya.githubuser.utils.ThemeUtils
-import com.arya.githubuser.utils.ThemeUtils.isDarkModeEnabled
 import com.arya.githubuser.utils.showToast
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
@@ -24,15 +22,8 @@ class DetailActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<DetailViewModel>()
-    private val sharedPreferences by lazy { getSharedPreferences("ThemePref", MODE_PRIVATE) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (isDarkModeEnabled(sharedPreferences)) {
-            setTheme(R.style.Theme_GithubUser_Dark)
-        } else {
-            setTheme(R.style.Theme_GithubUser)
-        }
-
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -84,7 +75,7 @@ class DetailActivity : AppCompatActivity() {
                     btnFavorite.imageTintList = ColorStateList.valueOf(color)
                 } else {
                     val color = ContextCompat.getColor(
-                        this@DetailActivity, R.color.gray
+                        this@DetailActivity, R.color.dark_secondary
                     )
                     btnFavorite.imageTintList = ColorStateList.valueOf(color)
                 }

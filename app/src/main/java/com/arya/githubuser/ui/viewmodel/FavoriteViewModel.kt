@@ -21,7 +21,7 @@ class FavoriteViewModel : ViewModel() {
 
     fun getAllFavoriteUsers() {
         viewModelScope.launch {
-            _favoriteUsersLiveData.postValue(mFavoriteUserRepository?.getAllFavoriteUsers())
+            _favoriteUsersLiveData.postValue(mFavoriteUserRepository?.getFavoriteUsers())
         }
     }
 }

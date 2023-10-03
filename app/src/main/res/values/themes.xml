@@ -1,32 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.GithubUser" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorSecondary">@color/secondary</item>
-        <item name="colorTertiary">@color/tertiary</item>
-        <item name="background">@color/primary</item>
-        <item name="android:textColorPrimary">@color/tertiary</item>
+        <item name="background">@color/light_primary</item>
+        <item name="colorPrimary">@color/light_primary</item>
+        <item name="colorPrimaryVariant">@color/light_secondary</item>
+        <item name="colorAccent">@color/light_tertiary</item>
+        <item name="android:textColorHint">@color/hint_color</item>
+        <item name="android:textColor">@color/light_tertiary</item>
+        <item name="colorOnSecondary">@color/light_secondary</item>
     </style>
 
-    <!-- Dark theme. -->
-    <style name="Base.Theme.GithubUser.Dark" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <item name="colorPrimary">@color/dark_primary</item>
-        <item name="colorSecondary">@color/dark_secondary</item>
-        <item name="colorTertiary">@color/dark_tertiary</item>
-        <item name="background">@color/dark_primary</item>
-        <item name="android:textColorPrimary">@color/dark_tertiary</item>
-        <item name="android:textColorHint">@color/dark_hint_color</item>
-    </style>
-
-    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
-        <item name="android:textColorHint">?android:textColorHint</item>
-    </style>
-
-    <!-- Light theme for use in the app. -->
     <style name="Theme.GithubUser" parent="Base.Theme.GithubUser" />
-
-    <!-- Dark theme for use in the app. -->
     <style name="Theme.GithubUser.Dark" parent="Base.Theme.GithubUser.Dark" />
 </resources>

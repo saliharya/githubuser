@@ -3,47 +3,50 @@ package com.arya.githubuser.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Switch
-import androidx.activity.viewModels
+import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.ViewModelProvider
 import com.arya.githubuser.R
 import com.arya.githubuser.databinding.ActivityMainBinding
+import com.arya.githubuser.datastore.SettingPreferences
+import com.arya.githubuser.datastore.dataStore
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.ui.adapter.ListGitHubUserAdapter
 import com.arya.githubuser.ui.viewmodel.MainViewModel
+import com.arya.githubuser.ui.viewmodel.ViewModelFactory
 import com.arya.githubuser.utils.showToast
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    private val viewModel by viewModels<MainViewModel>()
     private val list = ArrayList<GithubUser>()
     private var adapter: ListGitHubUserAdapter? = null
-
-    private val sharedPreferences by lazy { getSharedPreferences("ThemePref", MODE_PRIVATE) }
-    private val switchDarkMode by lazy { findViewById<Switch>(R.id.switchDarkMode) }
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Set theme
-        if (sharedPreferences.getBoolean("dark_mode", false)) {
-            setTheme(R.style.Theme_GithubUser_Dark)
-        } else {
-            setTheme(R.style.Theme_GithubUser)
-        }
-
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        // Set switch state
-        switchDarkMode.isChecked = sharedPreferences.getBoolean("dark_mode", false)
+        val switchTheme = findViewById<SwitchMaterial>(R.id.switchTheme)
 
-        // Set switch listener
-        switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("dark_mode", isChecked).apply()
+        val pref = SettingPreferences.getInstance(application.dataStore)
+        viewModel = ViewModelProvider(this, ViewModelFactory(pref))[MainViewModel::class.java]
 
-            // Restart activity
-            recreate()
+        viewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                switchTheme.isChecked = true
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                switchTheme.isChecked = false
+            }
+        }
+
+        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            viewModel.saveThemeSetting(isChecked)
         }
 
         with(binding) {
@@ -51,10 +54,7 @@ class MainActivity : AppCompatActivity() {
 
             adapter = ListGitHubUserAdapter(list) { user ->
                 val intent = Intent(this@MainActivity, DetailActivity::class.java)
-
                 intent.putExtra("user", user)
-                intent.putExtra("dark_mode", sharedPreferences.getBoolean("dark_mode", false))
-
                 startActivity(intent)
             }
             rvGithubUsers.adapter = adapter
@@ -80,6 +80,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeLiveData() {
+        viewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+
         viewModel.isLoadingLiveData.observe(this) { isLoading ->
             adapter?.updateShimmerState(isLoading)
         }
