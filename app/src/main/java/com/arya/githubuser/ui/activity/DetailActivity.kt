@@ -84,7 +84,7 @@ class DetailActivity : AppCompatActivity() {
                     btnFavorite.imageTintList = ColorStateList.valueOf(color)
                 } else {
                     val color = ContextCompat.getColor(
-                        this@DetailActivity, R.color.white
+                        this@DetailActivity, R.color.gray
                     )
                     btnFavorite.imageTintList = ColorStateList.valueOf(color)
                 }
