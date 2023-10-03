@@ -11,5 +11,4 @@
     </style>
 
     <style name="Theme.GithubUser" parent="Base.Theme.GithubUser" />
-    <style name="Theme.GithubUser.Dark" parent="Base.Theme.GithubUser.Dark" />
 </resources>

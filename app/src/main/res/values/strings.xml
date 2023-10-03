@@ -1,17 +1,12 @@
 <resources>
     <string name="app_name">Github User</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="follower_fragment">Follower Fragment</string>
     <string name="follower">Follower</string>
     <string name="following">Following</string>
-    <string name="name">Name: %s</string>
     <string name="follower_count">%d Followers</string>
     <string name="following_count">%d Followings</string>
     <string name="github_user_pict">Github User Pict</string>
     <string name="search_by_username">Search by username</string>
-    <string name="github_user_pict_shimmer">github_user_pict_shimmer</string>
-    <string name="username">Username</string>
     <string name="btn_favorite">btnFavorite</string>
     <string name="followings">Followings</string>
     <string name="followers">Followers</string>
