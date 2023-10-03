@@ -4,4 +4,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
 
+    <color name="dark_primary">#050505</color>
+    <color name="dark_secondary">#242529</color>
+    <color name="dark_tertiary">#FFFFFFFF</color>
+
+    <color name="primary">#FEFEFE</color>
+    <color name="secondary">#D2DBDF</color>
+    <color name="tertiary">#FF000000</color>
+    <color name="hint_color">#979797</color>
+    <color name="dark_hint_color">#838383</color>
 </resources>
