@@ -20,5 +20,7 @@ data class GithubUser(
     val followers: Int?,
     val following: Int?,
     var isFavorite: Boolean = false
-) : Parcelable
+) : Parcelable {
+    val shareableText get() = "$name\n$htmlUrl"
+}
 

@@ -1,6 +1,7 @@
 package com.arya.githubuser.ui.activity
 
 import android.app.Application
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
@@ -31,6 +32,11 @@ class DetailActivity : AppCompatActivity() {
 
         viewModel.getFavoriteUsers()
         observeLiveData()
+
+        val user: GithubUser? = intent.getParcelableExtra("user")
+        user?.let {
+            initializeViews(it)
+        }
     }
 
     private fun initializeViews(user: GithubUser) {
@@ -41,7 +47,29 @@ class DetailActivity : AppCompatActivity() {
             btnFavorite.setOnClickListener {
                 viewModel.toggleFavoriteUser()
             }
+            btnShare.imageTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    this@DetailActivity,
+                    R.color.dark_secondary
+                )
+            )
+            btnShare.setOnClickListener {
+                shareWithID(user)
+            }
         }
+    }
+
+    private fun shareWithID(user: GithubUser) {
+        val shareText = "GitHub User:${user.shareableText}"
+
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, shareText)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
     }
 
     private fun ActivityDetailBinding.setUpViewPager(username: String) {

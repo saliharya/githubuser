@@ -36,9 +36,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="12dp"
+                android:textColor="?android:textColorPrimary"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="?android:textColorPrimary"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvName"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="12dp"
-                android:textColor="?android:textColorPrimary"/>
+                android:textColor="?android:textColorPrimary" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,8 +59,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-                    android:textStyle="bold"
-                    android:textColor="?android:textColorPrimary"/>
+                    android:textColor="?android:textColorPrimary"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_followers"
@@ -68,8 +68,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-                    android:textStyle="bold"
-                    android:textColor="?android:textColorPrimary"/>
+                    android:textColor="?android:textColorPrimary"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvFollowerCount"
@@ -77,8 +77,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-                    android:textStyle="bold"
-                    android:textColor="?android:textColorPrimary"/>
+                    android:textColor="?android:textColorPrimary"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_following"
@@ -86,8 +86,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-                    android:textStyle="bold"
-                    android:textColor="?android:textColorPrimary"/>
+                    android:textColor="?android:textColorPrimary"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <com.google.android.material.tabs.TabLayout
@@ -302,10 +302,21 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        android:backgroundTint="?attr/colorOnSecondary"
         android:contentDescription="@string/btn_favorite"
         android:src="@drawable/baseline_favorite"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="?attr/colorOnSecondary"/>
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="?attr/colorOnSecondary"
+        android:src="@drawable/baseline_share_24"
+        app:layout_constraintBottom_toBottomOf="@+id/btnFavorite"
+        app:layout_constraintEnd_toStartOf="@+id/btnFavorite"
+        app:layout_constraintTop_toTopOf="@+id/btnFavorite" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
