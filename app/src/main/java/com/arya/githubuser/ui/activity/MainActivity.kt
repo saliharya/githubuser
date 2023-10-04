@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.CompoundButton
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.ViewModelProvider
 import com.arya.githubuser.R
 import com.arya.githubuser.databinding.ActivityMainBinding
 import com.arya.githubuser.datastore.SettingPreferences
@@ -24,16 +24,15 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val list = ArrayList<GithubUser>()
     private var adapter: ListGitHubUserAdapter? = null
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModels {
+        ViewModelFactory(SettingPreferences.getInstance(application.dataStore))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         val switchTheme = findViewById<SwitchMaterial>(R.id.switchTheme)
-
-        val pref = SettingPreferences.getInstance(application.dataStore)
-        viewModel = ViewModelProvider(this, ViewModelFactory(pref))[MainViewModel::class.java]
 
         viewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {

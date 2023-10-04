@@ -7,8 +7,7 @@ import com.arya.githubuser.ui.fragment.FollowerFragment
 import com.arya.githubuser.ui.fragment.FollowingFragment
 
 class SectionsPagerAdapter(
-    activity: AppCompatActivity,
-    private val username: String
+    activity: AppCompatActivity, private val username: String
 ) : FragmentStateAdapter(activity) {
     override fun getItemCount() = 2
 

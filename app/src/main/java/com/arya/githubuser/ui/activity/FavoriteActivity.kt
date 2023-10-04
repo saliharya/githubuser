@@ -55,15 +55,15 @@ class FavoriteActivity : AppCompatActivity() {
                     binding.rvFavorite.visibility = View.VISIBLE
                 }
 
-                    adapter = ListGitHubUserAdapter(favoriteList) { user ->
-                        val intent = Intent(this, DetailActivity::class.java)
+                adapter = ListGitHubUserAdapter(favoriteList) { user ->
+                    val intent = Intent(this, DetailActivity::class.java)
 
-                        intent.putExtra("user", user)
+                    intent.putExtra("user", user)
 
-                        startActivity(intent)
-                    }
-                    binding.rvFavorite.adapter = adapter
+                    startActivity(intent)
                 }
+                binding.rvFavorite.adapter = adapter
+            }
         }
     }
 }

@@ -11,9 +11,7 @@ class GithubRepository {
     private val gitHubService = GitHubService.create()
 
     fun fetchGithubUsers(
-        query: String,
-        onSuccess: (GitHubResponse?) -> Unit,
-        onFailure: (Throwable) -> Unit
+        query: String, onSuccess: (GitHubResponse?) -> Unit, onFailure: (Throwable) -> Unit
     ) {
         val call = gitHubService.searchUsers(query)
         call.enqueue(object : Callback<GitHubResponse> {
@@ -30,9 +28,7 @@ class GithubRepository {
     }
 
     fun fetchGithubUserDetail(
-        username: String,
-        onSuccess: (GithubUser?) -> Unit,
-        onFailure: (Throwable) -> Unit
+        username: String, onSuccess: (GithubUser?) -> Unit, onFailure: (Throwable) -> Unit
     ) {
         val call = gitHubService.getUserDetail(username)
         call.enqueue(object : Callback<GithubUser> {
@@ -49,9 +45,7 @@ class GithubRepository {
     }
 
     fun getFollowers(
-        username: String,
-        onSuccess: (List<GithubUser>) -> Unit,
-        onFailure: (Throwable) -> Unit
+        username: String, onSuccess: (List<GithubUser>) -> Unit, onFailure: (Throwable) -> Unit
     ) {
         val call = gitHubService.getFollowers(username)
         call.enqueue(object : Callback<List<GithubUser>> {
@@ -68,9 +62,7 @@ class GithubRepository {
     }
 
     fun getFollowings(
-        username: String,
-        onSuccess: (List<GithubUser>) -> Unit,
-        onFailure: (Throwable) -> Unit
+        username: String, onSuccess: (List<GithubUser>) -> Unit, onFailure: (Throwable) -> Unit
     ) {
         val call = gitHubService.getFollowing(username)
         call.enqueue(object : Callback<List<GithubUser>> {

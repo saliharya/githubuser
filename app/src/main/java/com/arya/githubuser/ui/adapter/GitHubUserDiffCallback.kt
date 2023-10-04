@@ -4,8 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.arya.githubuser.model.GithubUser
 
 class GitHubUserDiffCallback(
-    private val oldList: List<GithubUser>,
-    private val newList: List<GithubUser>
+    private val oldList: List<GithubUser>, private val newList: List<GithubUser>
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldList.size

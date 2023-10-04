@@ -49,8 +49,7 @@ class DetailActivity : AppCompatActivity() {
             }
             btnShare.imageTintList = ColorStateList.valueOf(
                 ContextCompat.getColor(
-                    this@DetailActivity,
-                    R.color.dark_secondary
+                    this@DetailActivity, R.color.dark_secondary
                 )
             )
             btnShare.setOnClickListener {
@@ -60,7 +59,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun shareWithID(user: GithubUser) {
-        val shareText = "GitHub User:${user.shareableText}"
+        val shareText = "GitHub User:${user.htmlUrl}"
 
         val sendIntent = Intent().apply {
             action = Intent.ACTION_SEND

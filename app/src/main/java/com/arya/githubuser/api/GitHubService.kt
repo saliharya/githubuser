@@ -27,15 +27,10 @@ interface GitHubService {
         private const val API_KEY = "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"
 
         fun create(): GitHubService {
-            val httpClient = OkHttpClient.Builder()
-                .addInterceptor(AuthInterceptor(API_KEY))
-                .build()
+            val httpClient = OkHttpClient.Builder().addInterceptor(AuthInterceptor(API_KEY)).build()
 
-            return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient)
-                .build()
+            return Retrofit.Builder().baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()).client(httpClient).build()
                 .create(GitHubService::class.java)
         }
     }

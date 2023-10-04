@@ -35,18 +35,14 @@ class MainViewModel(private val pref: SettingPreferences) : ViewModel() {
 
     fun fetchGitHubUsers(query: String) {
         _isLoadingLiveData.postValue(true)
-        githubRepository.fetchGithubUsers(
-            query,
-            onSuccess = { response ->
-                _isLoadingLiveData.postValue(false)
-                response?.let {
-                    _responseLiveData.postValue(it)
-                }
-            },
-            onFailure = {
-                _isLoadingLiveData.postValue(false)
-                _errorLiveData.postValue(it)
+        githubRepository.fetchGithubUsers(query, onSuccess = { response ->
+            _isLoadingLiveData.postValue(false)
+            response?.let {
+                _responseLiveData.postValue(it)
             }
-        )
+        }, onFailure = {
+            _isLoadingLiveData.postValue(false)
+            _errorLiveData.postValue(it)
+        })
     }
 }

@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.arya.githubuser.repository.FavoriteUserRepository
 import com.arya.githubuser.model.GithubUser
+import com.arya.githubuser.repository.FavoriteUserRepository
 import kotlinx.coroutines.launch
 
 class FavoriteViewModel : ViewModel() {

@@ -38,21 +38,17 @@ class DetailViewModel : ViewModel() {
 
     fun fetchGitHubUser(username: String) {
         _isLoadingLiveData.postValue(true)
-        githubRepository.fetchGithubUserDetail(
-            username,
-            onSuccess = { response ->
-                _isLoadingLiveData.postValue(false)
-                val isFavorite = favoriteUsersLiveData.value?.any {
-                    response?.id == it.id
-                } ?: false
-                response?.isFavorite = isFavorite
-                _responseLiveData.postValue(response)
-            },
-            onFailure = {
-                _isLoadingLiveData.postValue(false)
-                _errorLiveData.postValue(it)
-            }
-        )
+        githubRepository.fetchGithubUserDetail(username, onSuccess = { response ->
+            _isLoadingLiveData.postValue(false)
+            val isFavorite = favoriteUsersLiveData.value?.any {
+                response?.id == it.id
+            } ?: false
+            response?.isFavorite = isFavorite
+            _responseLiveData.postValue(response)
+        }, onFailure = {
+            _isLoadingLiveData.postValue(false)
+            _errorLiveData.postValue(it)
+        })
     }
 
     fun getFavoriteUsers() {

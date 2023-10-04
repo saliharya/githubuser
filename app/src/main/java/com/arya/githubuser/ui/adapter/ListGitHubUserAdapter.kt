@@ -11,8 +11,7 @@ import com.arya.githubuser.model.GithubUser
 import com.bumptech.glide.Glide
 
 class ListGitHubUserAdapter(
-    private var listGithubUser: List<GithubUser>,
-    private val onItemClicked: (GithubUser) -> Unit
+    private var listGithubUser: List<GithubUser>, private val onItemClicked: (GithubUser) -> Unit
 ) : RecyclerView.Adapter<ListGitHubUserAdapter.ListViewHolder>() {
     private var isLoading = false
 

@@ -9,18 +9,13 @@ import kotlinx.parcelize.Parcelize
 @Entity
 @Parcelize
 data class GithubUser(
-    @PrimaryKey
-    val id: Long?,
+    @PrimaryKey val id: Long?,
     val login: String?,
     val name: String?,
-    @SerializedName("avatar_url")
-    val avatarUrl: String?,
-    @SerializedName("html_url")
-    val htmlUrl: String?,
+    @SerializedName("avatar_url") val avatarUrl: String?,
+    @SerializedName("html_url") val htmlUrl: String?,
     val followers: Int?,
     val following: Int?,
     var isFavorite: Boolean = false
-) : Parcelable {
-    val shareableText get() = "$name\n$htmlUrl"
-}
+) : Parcelable
 
