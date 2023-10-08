@@ -1,6 +1,5 @@
 package com.arya.githubuser.ui.activity
 
-import android.app.Application
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -10,8 +9,9 @@ import com.arya.githubuser.databinding.ActivityFavoriteBinding
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.ui.adapter.ListGitHubUserAdapter
 import com.arya.githubuser.ui.viewmodel.FavoriteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FavoriteActivity : AppCompatActivity() {
     private val binding by lazy { ActivityFavoriteBinding.inflate(layoutInflater) }
     private val favoriteList = ArrayList<GithubUser>()
@@ -21,8 +21,6 @@ class FavoriteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        (applicationContext as? Application)?.let { viewModel.initRepository(it) }
 
         binding.rvFavorite.setHasFixedSize(true)
 

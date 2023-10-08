@@ -6,9 +6,13 @@ import com.arya.githubuser.model.GithubUser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class GithubRepository {
-    private val gitHubService = GitHubService.create()
+@Singleton
+class GithubRepository @Inject constructor(
+    private val gitHubService: GitHubService
+) {
 
     fun fetchGithubUsers(
         query: String, onSuccess: (GitHubResponse?) -> Unit, onFailure: (Throwable) -> Unit

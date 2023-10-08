@@ -1,6 +1,5 @@
 package com.arya.githubuser.ui.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,13 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.repository.FavoriteUserRepository
 import com.arya.githubuser.repository.GithubRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailViewModel : ViewModel() {
-
-    private val githubRepository = GithubRepository()
-
-    private var mFavoriteUserRepository: FavoriteUserRepository? = null
+@HiltViewModel
+class DetailViewModel @Inject constructor(
+    private val githubRepository: GithubRepository,
+    private var mFavoriteUserRepository: FavoriteUserRepository
+) : ViewModel() {
 
     private val _responseLiveData: MutableLiveData<GithubUser> = MutableLiveData()
     val responseLiveData: LiveData<GithubUser> = _responseLiveData
@@ -27,10 +28,6 @@ class DetailViewModel : ViewModel() {
 
     private val _isLoadingLiveData: MutableLiveData<Boolean> = MutableLiveData()
     val isLoadingLiveData: LiveData<Boolean> = _isLoadingLiveData
-
-    fun initRepository(application: Application) {
-        mFavoriteUserRepository = FavoriteUserRepository(application)
-    }
 
     fun setUser(user: GithubUser) {
         _responseLiveData.postValue(user)
@@ -53,15 +50,15 @@ class DetailViewModel : ViewModel() {
 
     fun getFavoriteUsers() {
         viewModelScope.launch {
-            _favoriteUsersLiveData.postValue(mFavoriteUserRepository?.getFavoriteUsers())
+            _favoriteUsersLiveData.postValue(mFavoriteUserRepository.getFavoriteUsers())
         }
     }
 
     fun toggleFavoriteUser() {
         viewModelScope.launch {
             responseLiveData.value?.let { user ->
-                if (user.isFavorite) mFavoriteUserRepository?.delete(user)
-                else mFavoriteUserRepository?.insert(user)
+                if (user.isFavorite) mFavoriteUserRepository.delete(user)
+                else mFavoriteUserRepository.insert(user)
 
                 user.isFavorite = !user.isFavorite
 

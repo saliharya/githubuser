@@ -6,8 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.repository.GithubRepository
 
-abstract class BaseFollowingFollowerViewModel : ViewModel() {
-    protected val githubRepository = GithubRepository()
+abstract class BaseFollowingFollowerViewModel(
+    protected val githubRepository: GithubRepository
+) : ViewModel() {
 
     protected val _responseLiveData: MutableLiveData<List<GithubUser>> = MutableLiveData()
     val responseLiveData: LiveData<List<GithubUser>> = _responseLiveData

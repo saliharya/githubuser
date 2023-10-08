@@ -3,7 +3,10 @@ package com.arya.githubuser.ui.fragment
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.arya.githubuser.ui.viewmodel.FollowingViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class FollowingFragment : BaseFollowingFollowerFragment() {
     override val viewModel by viewModels<FollowingViewModel>()
 

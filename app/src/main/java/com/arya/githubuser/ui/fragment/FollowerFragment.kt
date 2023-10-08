@@ -3,7 +3,10 @@ package com.arya.githubuser.ui.fragment
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.arya.githubuser.ui.viewmodel.FollowerViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class FollowerFragment : BaseFollowingFollowerFragment() {
     override val viewModel by viewModels<FollowerViewModel>()
     override fun fetchData(username: String) {

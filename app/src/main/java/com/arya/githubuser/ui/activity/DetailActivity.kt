@@ -1,6 +1,5 @@
 package com.arya.githubuser.ui.activity
 
-import android.app.Application
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -18,7 +17,9 @@ import com.arya.githubuser.ui.viewmodel.DetailViewModel
 import com.arya.githubuser.utils.showToast
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
@@ -27,8 +28,6 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        (applicationContext as? Application)?.let { viewModel.initRepository(it) }
 
         viewModel.getFavoriteUsers()
         observeLiveData()
