@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import com.arya.githubuser.R
 import com.arya.githubuser.databinding.ActivityMainBinding
 import com.arya.githubuser.model.GithubUser
@@ -86,13 +87,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.isLoadingLiveData.observe(this) { isLoading ->
-            adapter?.updateShimmerState(isLoading)
+            with(binding) {
+                rvGithubUsers.isVisible = !isLoading
+                sfl.run {
+                    isVisible = isLoading
+                    if (isLoading) startShimmer() else stopShimmer()
+                }
+            }
         }
         viewModel.responseLiveData.observe(this) { response ->
             response.items.let {
                 list.clear()
                 list.addAll(it)
-                adapter?.updateData(list)
+                adapter?.updateData(it)
             }
 
             val noDataTextView = binding.tvNoData
