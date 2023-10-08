@@ -8,11 +8,15 @@ import androidx.lifecycle.viewModelScope
 import com.arya.githubuser.api.GitHubResponse
 import com.arya.githubuser.datastore.SettingPreferences
 import com.arya.githubuser.repository.GithubRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(private val pref: SettingPreferences) : ViewModel() {
-
-    private val githubRepository = GithubRepository()
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val pref: SettingPreferences,
+    private val githubRepository: GithubRepository
+) : ViewModel() {
 
     private val _responseLiveData: MutableLiveData<GitHubResponse> = MutableLiveData()
     val responseLiveData: LiveData<GitHubResponse> = _responseLiveData

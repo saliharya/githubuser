@@ -10,23 +10,21 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import com.arya.githubuser.R
 import com.arya.githubuser.databinding.ActivityMainBinding
-import com.arya.githubuser.datastore.SettingPreferences
-import com.arya.githubuser.datastore.dataStore
 import com.arya.githubuser.model.GithubUser
 import com.arya.githubuser.ui.adapter.ListGitHubUserAdapter
 import com.arya.githubuser.ui.viewmodel.MainViewModel
-import com.arya.githubuser.ui.viewmodel.ViewModelFactory
 import com.arya.githubuser.utils.showToast
 import com.google.android.material.switchmaterial.SwitchMaterial
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val list = ArrayList<GithubUser>()
     private var adapter: ListGitHubUserAdapter? = null
-    private val viewModel: MainViewModel by viewModels {
-        ViewModelFactory(SettingPreferences.getInstance(application.dataStore))
-    }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

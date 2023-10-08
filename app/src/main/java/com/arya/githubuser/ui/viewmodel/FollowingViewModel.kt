@@ -1,6 +1,13 @@
 package com.arya.githubuser.ui.viewmodel
 
-class FollowingViewModel : BaseFollowingFollowerViewModel() {
+import com.arya.githubuser.repository.GithubRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
+@HiltViewModel
+class FollowingViewModel @Inject constructor(
+    githubRepository: GithubRepository
+) : BaseFollowingFollowerViewModel(githubRepository) {
     override fun fetchData(username: String) {
         _isLoadingLiveData.postValue(true)
 

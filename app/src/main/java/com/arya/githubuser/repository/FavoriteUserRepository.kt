@@ -1,17 +1,14 @@
 package com.arya.githubuser.repository
 
-import android.app.Application
 import com.arya.githubuser.database.FavoriteUserDao
-import com.arya.githubuser.database.FavoriteUserRoomDatabase
 import com.arya.githubuser.model.GithubUser
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class FavoriteUserRepository(application: Application) {
+@Singleton
+class FavoriteUserRepository @Inject constructor(
     private val mFavoriteUserDao: FavoriteUserDao
-
-    init {
-        val db = FavoriteUserRoomDatabase.getDatabase(application)
-        mFavoriteUserDao = db.favoriteUserDao()
-    }
+) {
 
     suspend fun getFavoriteUsers(): List<GithubUser> = mFavoriteUserDao.getFavoriteUsers()
 
