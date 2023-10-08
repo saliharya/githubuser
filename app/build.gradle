@@ -19,8 +19,12 @@ android {
         versionName "1.0"
         multiDexEnabled true
 
-        buildConfigField "String", "API_KEY", "\"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\""
-        buildConfigField "String", "BASE_URL", "\"https://api.github.com/\""
+        def localPropertiesFile = rootProject.file("local.properties")
+        def localProperties = new Properties()
+        localProperties.load(new FileInputStream(localPropertiesFile))
+
+        buildConfigField("String", "API_KEY", localProperties["API_KEY"])
+        buildConfigField("String", "BASE_URL", localProperties["BASE_URL"])
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
