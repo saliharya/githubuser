@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.arya.githubuser.databinding.FragmentFollowerBinding
 import com.arya.githubuser.model.GithubUser
@@ -51,7 +52,13 @@ abstract class BaseFollowingFollowerFragment : Fragment() {
 
     private fun observeLiveData() {
         viewModel.isLoadingLiveData.observe(viewLifecycleOwner) { isLoading ->
-            adapter?.updateShimmerState(isLoading)
+            with(binding) {
+                rvFollower.isVisible = !isLoading
+                sfl.run {
+                    isVisible = isLoading
+                    if (isLoading) startShimmer() else stopShimmer()
+                }
+            }
         }
         viewModel.responseLiveData.observe(viewLifecycleOwner) { followers ->
             followers?.let {

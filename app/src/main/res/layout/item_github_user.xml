@@ -8,57 +8,6 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:shimmer_auto_start="true"
-        app:shimmer_duration="1000"
-        tools:visibility="gone">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvUsernamePlaceholder"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:background="#FF555555"
-                android:textColor="@color/dark_secondary"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/circleViewImageShimmer"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <io.github.florent37.shapeofview.shapes.CircleView
-                android:id="@+id/circleViewImageShimmer"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_margin="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/ivPicturePlaceholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#555555"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </io.github.florent37.shapeofview.shapes.CircleView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.facebook.shimmer.ShimmerFrameLayout>
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dataLayout"
         android:layout_width="match_parent"
