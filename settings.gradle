@@ -12,5 +12,9 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "Github User"
 include ':app'
+include ':common'
+include ':core'
+include ':presentation'

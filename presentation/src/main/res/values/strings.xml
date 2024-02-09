@@ -1,0 +1,14 @@
+<resources>
+    <string name="follower">Follower</string>
+    <string name="following">Following</string>
+    <string name="follower_count">%d Followers</string>
+    <string name="following_count">%d Followings</string>
+    <string name="github_user_pict">Github User Pict</string>
+    <string name="search_by_username">Search by username</string>
+    <string name="btn_favorite">btnFavorite</string>
+    <string name="followings">Followings</string>
+    <string name="followers">Followers</string>
+    <string name="no_data_available">No data</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="no_favorite_user">No Favorite User</string>
+</resources>
