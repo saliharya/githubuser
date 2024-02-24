@@ -2,13 +2,12 @@ package com.arya.githubuser.core.domain.usecase
 
 import com.arya.githubuser.core.domain.model.GithubUserEntity
 import com.arya.githubuser.core.domain.repository.FavoriteUserRepository
-import javax.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-@Singleton
-class GetFavoriteUsersUseCase @Inject constructor(
-    private val favoriteUserRepository: FavoriteUserRepository
-) {
+class GetFavoriteUsersUseCase : KoinComponent {
+    private val favoriteUserRepository: FavoriteUserRepository by inject()
+
     suspend operator fun invoke(): List<GithubUserEntity> =
         favoriteUserRepository.getFavoriteUsers()
 }

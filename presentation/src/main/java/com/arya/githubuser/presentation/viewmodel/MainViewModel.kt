@@ -10,20 +10,17 @@ import com.arya.githubuser.core.domain.model.GithubUserEntity
 import com.arya.githubuser.core.domain.usecase.FetchGithubUserUseCase
 import com.arya.githubuser.core.domain.usecase.GetThemeSettingUseCase
 import com.arya.githubuser.core.domain.usecase.SaveThemeSettingUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
-    private val getThemeSettingUseCase: GetThemeSettingUseCase,
-    private val saveThemeSettingUseCase: SaveThemeSettingUseCase,
-    private val fetchGithubUserUseCase: FetchGithubUserUseCase
-) : ViewModel() {
+class MainViewModel : ViewModel(), KoinComponent {
+
+    private val getThemeSettingUseCase: GetThemeSettingUseCase by inject()
+    private val saveThemeSettingUseCase: SaveThemeSettingUseCase by inject()
+    private val fetchGithubUserUseCase: FetchGithubUserUseCase by inject()
 
     private val _responseLiveData = MutableLiveData<ResourceState<List<GithubUserEntity>>>()
     val responseLiveData: LiveData<ResourceState<List<GithubUserEntity>>> = _responseLiveData

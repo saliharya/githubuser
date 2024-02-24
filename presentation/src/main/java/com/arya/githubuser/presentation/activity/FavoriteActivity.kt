@@ -8,9 +8,7 @@ import com.arya.githubuser.core.domain.model.GithubUserEntity
 import com.arya.githubuser.presentation.adapter.ListGitHubUserAdapter
 import com.arya.githubuser.presentation.databinding.ActivityFavoriteBinding
 import com.arya.githubuser.presentation.viewmodel.FavoriteViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class FavoriteActivity : BaseActivity<ActivityFavoriteBinding, FavoriteViewModel>() {
 
     private val favoriteList = ArrayList<GithubUserEntity>()

@@ -6,13 +6,12 @@ import com.arya.githubuser.core.data.mapper.toEntity
 import com.arya.githubuser.core.data.remote.GitHubService
 import com.arya.githubuser.core.domain.repository.GithubRepository
 import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-@Singleton
-class GithubRepositoryImpl @Inject constructor(
-    private val gitHubService: GitHubService
-) : GithubRepository {
+class GithubRepositoryImpl : GithubRepository, KoinComponent {
+
+    private val gitHubService: GitHubService by inject()
 
     override suspend fun fetchGithubUsers(query: String) = flow {
         emit(ResourceState.Loading())

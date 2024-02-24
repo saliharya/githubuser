@@ -16,9 +16,7 @@ import com.arya.githubuser.presentation.databinding.ActivityDetailBinding
 import com.arya.githubuser.presentation.viewmodel.DetailViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class DetailActivity : BaseActivity<ActivityDetailBinding, DetailViewModel>() {
 
     override val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }

@@ -1,18 +1,16 @@
 package com.arya.githubuser.core.data.repository
 
-import com.arya.githubuser.common.utils.ResourceState
 import com.arya.githubuser.core.data.local.database.FavoriteUserDao
 import com.arya.githubuser.core.data.mapper.toDto
 import com.arya.githubuser.core.data.mapper.toEntity
 import com.arya.githubuser.core.domain.model.GithubUserEntity
 import com.arya.githubuser.core.domain.repository.FavoriteUserRepository
-import javax.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-@Singleton
-class FavoriteUserRepositoryImpl @Inject constructor(
-    private val mFavoriteUserDao: FavoriteUserDao
-) : FavoriteUserRepository {
+class FavoriteUserRepositoryImpl : FavoriteUserRepository, KoinComponent {
+
+    private val mFavoriteUserDao: FavoriteUserDao by inject()
 
     override suspend fun getFavoriteUsers(): List<GithubUserEntity> =
         mFavoriteUserDao.getFavoriteUsers().map { it.toEntity() }

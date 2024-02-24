@@ -1,13 +1,13 @@
 package com.arya.githubuser.core.domain.usecase
 
 import com.arya.githubuser.core.domain.repository.GithubRepository
-import javax.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-@Singleton
-class FetchGithubUserDetailUseCase @Inject constructor(
-    private val githubUserRepository: GithubRepository
-) {
+class FetchGithubUserDetailUseCase : KoinComponent {
+
+    private val githubUserRepository: GithubRepository by inject()
+
     suspend operator fun invoke(
         username: String
     ) = githubUserRepository.fetchGithubUserDetail(username)

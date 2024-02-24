@@ -14,10 +14,8 @@ import com.arya.githubuser.presentation.adapter.ListGitHubUserAdapter
 import com.arya.githubuser.presentation.databinding.ActivityMainBinding
 import com.arya.githubuser.presentation.viewmodel.MainViewModel
 import com.google.android.material.switchmaterial.SwitchMaterial
-import dagger.hilt.android.AndroidEntryPoint
 
 
-@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     private val list = ArrayList<GithubUserEntity>()

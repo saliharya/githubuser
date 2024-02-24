@@ -2,12 +2,11 @@ package com.arya.githubuser.core.domain.usecase
 
 import com.arya.githubuser.core.domain.repository.SettingRepository
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
-import javax.inject.Singleton
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-@Singleton
-class GetThemeSettingUseCase @Inject constructor(
-    private val settingRepository: SettingRepository
-) {
+class GetThemeSettingUseCase : KoinComponent {
+    private val settingRepository: SettingRepository by inject()
+
     operator fun invoke(): Flow<Boolean> = settingRepository.getThemeSetting()
 }
