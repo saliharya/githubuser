@@ -1,0 +1,13 @@
+workflows:
+  android_build:
+    name: Android Build
+    environment:
+      vars:
+        GRADLE_WRAPPER: "./gradlew"
+    scripts:
+      - name: Set up environment
+        script: echo "Setting up environment"
+      - name: Build APK
+        script: $GRADLE_WRAPPER assembleRelease
+    artifacts:
+      - build/outputs/apk/release/*.apk
