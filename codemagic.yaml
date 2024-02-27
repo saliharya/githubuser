@@ -5,6 +5,8 @@ workflows:
       vars:
         GRADLE_WRAPPER: "./gradlew"
     scripts:
+      - name: Enable Permission
+        script: chmod +x $GRADLE_WRAPPER
       - name: Set up environment
         script: echo "Setting up environment"
       - name: Build APK
