@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id("com.google.devtools.ksp")
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -50,6 +52,7 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
 
     implementation "com.google.android.play:core:1.10.3"
+    implementation 'com.google.firebase:firebase-crashlytics:18.6.2'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.13'
 

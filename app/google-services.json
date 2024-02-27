@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "907414643975",
+    "project_id": "github-user-e8267",
+    "storage_bucket": "github-user-e8267.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907414643975:android:4d5947bd1bb498534051a2",
+        "android_client_info": {
+          "package_name": "com.arya.githubuser"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPUZd1HM4A1WQuQ5piHHyPiMrBD7CwD7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
