@@ -7,7 +7,6 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
 import com.arya.githubuser.core.data.local.database.FavoriteUserRoomDatabase
 import com.arya.githubuser.core.domain.usecase.DeleteFavoriteUserUseCase
-import com.arya.githubuser.core.domain.usecase.FetchGithubUserUseCase
 import com.arya.githubuser.core.domain.usecase.InsertFavoriteUserUseCase
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module

@@ -2,7 +2,6 @@ package com.arya.githubuser.core.data.remote
 
 import com.arya.githubuser.core.data.model.GitHubResponse
 import com.arya.githubuser.core.data.model.GithubUserDto
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

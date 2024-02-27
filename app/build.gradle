@@ -38,6 +38,7 @@ android {
     kotlinOptions {
         jvmTarget = '17'
     }
+    dynamicFeatures = [':favorite']
 }
 
 dependencies {
@@ -47,6 +48,8 @@ dependencies {
     implementation "io.insert-koin:koin-android:3.2.2"
 
     implementation "androidx.multidex:multidex:2.0.1"
+
+    implementation "com.google.android.play:core:1.10.3"
 
     implementation project(':common')
     implementation project(':core')
