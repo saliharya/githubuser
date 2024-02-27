@@ -9,6 +9,7 @@ import com.arya.githubuser.core.domain.usecase.GetFavoriteUsersUseCase
 import com.arya.githubuser.core.domain.usecase.GetFollowerUseCase
 import com.arya.githubuser.core.domain.usecase.GetFollowingUseCase
 import com.google.gson.Gson
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -24,8 +25,12 @@ val remoteModule = module {
     single { GetFollowingUseCase(get()) }
 
     single {
+        val certificatePinner = CertificatePinner.Builder()
+            .add(BuildConfig.BASE_URL, "sha256/jFaeVpA8UQuidlJkkpIdq3MPwD0m8XbuCRbJlezysBE=")
+            .build()
         OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor(BuildConfig.API_KEY))
+            .certificatePinner(certificatePinner)
             .build()
     }
 
