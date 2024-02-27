@@ -10,18 +10,15 @@ import com.arya.githubuser.core.domain.usecase.DeleteFavoriteUserUseCase
 import com.arya.githubuser.core.domain.usecase.FetchGithubUserDetailUseCase
 import com.arya.githubuser.core.domain.usecase.GetFavoriteUsersUseCase
 import com.arya.githubuser.core.domain.usecase.InsertFavoriteUserUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class DetailViewModel @Inject constructor(
+class DetailViewModel(
     private val fetchGithubUserDetailUseCase: FetchGithubUserDetailUseCase,
-    private var getFavoriteUsersUseCase: GetFavoriteUsersUseCase,
-    private var insertFavoriteUserUseCase: InsertFavoriteUserUseCase,
-    private var deleteFavoriteUserUseCase: DeleteFavoriteUserUseCase,
+    private val getFavoriteUsersUseCase: GetFavoriteUsersUseCase,
+    private val insertFavoriteUserUseCase: InsertFavoriteUserUseCase,
+    private val deleteFavoriteUserUseCase: DeleteFavoriteUserUseCase
 ) : ViewModel() {
 
     private val _responseLiveData: MutableLiveData<ResourceState<GithubUserEntity>> =
@@ -68,6 +65,5 @@ class DetailViewModel @Inject constructor(
                 _responseLiveData.postValue(ResourceState.Success(data = user))
             }
         }
-
     }
 }

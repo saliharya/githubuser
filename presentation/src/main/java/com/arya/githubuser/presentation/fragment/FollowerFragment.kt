@@ -1,14 +1,12 @@
 package com.arya.githubuser.presentation.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.viewModels
 import com.arya.githubuser.presentation.viewmodel.FollowerViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-@AndroidEntryPoint
 class FollowerFragment : BaseFollowingFollowerFragment() {
-    override val viewModel by viewModels<FollowerViewModel>()
+    override val viewModel by viewModel<FollowerViewModel>()
     override fun fetchData(username: String) {
         viewModel.fetchData(username)
     }

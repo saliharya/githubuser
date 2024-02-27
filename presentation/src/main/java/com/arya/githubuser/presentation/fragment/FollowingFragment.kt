@@ -1,14 +1,11 @@
 package com.arya.githubuser.presentation.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.viewModels
 import com.arya.githubuser.presentation.viewmodel.FollowingViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
-@AndroidEntryPoint
 class FollowingFragment : BaseFollowingFollowerFragment() {
-    override val viewModel by viewModels<FollowingViewModel>()
+    override val viewModel by viewModel<FollowingViewModel>()
 
     override fun fetchData(username: String) {
         viewModel.fetchData(username)
