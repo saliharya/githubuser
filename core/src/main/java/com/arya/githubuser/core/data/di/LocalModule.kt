@@ -13,8 +13,8 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val localModule = module {
-    single { InsertFavoriteUserUseCase() }
-    single { DeleteFavoriteUserUseCase() }
+    single { InsertFavoriteUserUseCase(get()) }
+    single { DeleteFavoriteUserUseCase(get()) }
 
     single {
         Room.databaseBuilder(

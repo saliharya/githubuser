@@ -1,12 +1,10 @@
 package com.arya.githubuser.presentation.fragment
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import com.arya.githubuser.common.base.BaseFragment
 import com.arya.githubuser.common.utils.ResourceState
 import com.arya.githubuser.common.utils.showToast
@@ -16,7 +14,8 @@ import com.arya.githubuser.presentation.adapter.ListGitHubUserAdapter
 import com.arya.githubuser.presentation.databinding.FragmentFollowerBinding
 import com.arya.githubuser.presentation.viewmodel.BaseFollowingFollowerViewModel
 
-abstract class BaseFollowingFollowerFragment : BaseFragment<FragmentFollowerBinding, BaseFollowingFollowerViewModel>() {
+abstract class BaseFollowingFollowerFragment :
+    BaseFragment<FragmentFollowerBinding, BaseFollowingFollowerViewModel>() {
 
     private val followerList = ArrayList<GithubUserEntity>()
     private var adapter: ListGitHubUserAdapter? = null

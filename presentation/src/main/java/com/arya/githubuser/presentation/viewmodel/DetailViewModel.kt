@@ -13,15 +13,13 @@ import com.arya.githubuser.core.domain.usecase.InsertFavoriteUserUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class DetailViewModel : ViewModel(), KoinComponent {
-
-    private val fetchGithubUserDetailUseCase: FetchGithubUserDetailUseCase by inject()
-    private val getFavoriteUsersUseCase: GetFavoriteUsersUseCase by inject()
-    private val insertFavoriteUserUseCase: InsertFavoriteUserUseCase by inject()
-    private val deleteFavoriteUserUseCase: DeleteFavoriteUserUseCase by inject()
+class DetailViewModel(
+    private val fetchGithubUserDetailUseCase: FetchGithubUserDetailUseCase,
+    private val getFavoriteUsersUseCase: GetFavoriteUsersUseCase,
+    private val insertFavoriteUserUseCase: InsertFavoriteUserUseCase,
+    private val deleteFavoriteUserUseCase: DeleteFavoriteUserUseCase
+) : ViewModel() {
 
     private val _responseLiveData: MutableLiveData<ResourceState<GithubUserEntity>> =
         MutableLiveData()
@@ -67,6 +65,5 @@ class DetailViewModel : ViewModel(), KoinComponent {
                 _responseLiveData.postValue(ResourceState.Success(data = user))
             }
         }
-
     }
 }

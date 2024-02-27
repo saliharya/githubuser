@@ -9,7 +9,7 @@ import com.arya.githubuser.core.domain.repository.SettingRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<GithubRepository> { GithubRepositoryImpl() }
-    single<FavoriteUserRepository> { FavoriteUserRepositoryImpl() }
-    single<SettingRepository> { SettingRepositoryImpl() }
+    single<GithubRepository> { GithubRepositoryImpl(get()) }
+    single<FavoriteUserRepository> { FavoriteUserRepositoryImpl(get()) }
+    single<SettingRepository> { SettingRepositoryImpl(get()) }
 }

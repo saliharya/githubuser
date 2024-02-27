@@ -9,9 +9,7 @@ import kotlinx.coroutines.flow.flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class GithubRepositoryImpl : GithubRepository, KoinComponent {
-
-    private val gitHubService: GitHubService by inject()
+class GithubRepositoryImpl(private val gitHubService: GitHubService) : GithubRepository{
 
     override suspend fun fetchGithubUsers(query: String) = flow {
         emit(ResourceState.Loading())

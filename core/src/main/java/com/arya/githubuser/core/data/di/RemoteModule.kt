@@ -17,11 +17,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 val remoteModule = module {
     single { Gson() }
 
-    single { FetchGithubUserUseCase() }
-    single { FetchGithubUserDetailUseCase() }
-    single { GetFavoriteUsersUseCase() }
-    single { GetFollowerUseCase() }
-    single { GetFollowingUseCase() }
+    single { FetchGithubUserUseCase(get()) }
+    single { FetchGithubUserDetailUseCase(get()) }
+    single { GetFavoriteUsersUseCase(get()) }
+    single { GetFollowerUseCase(get()) }
+    single { GetFollowingUseCase(get()) }
 
     single {
         OkHttpClient.Builder()

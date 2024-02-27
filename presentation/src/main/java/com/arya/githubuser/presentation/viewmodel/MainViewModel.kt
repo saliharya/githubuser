@@ -13,15 +13,12 @@ import com.arya.githubuser.core.domain.usecase.SaveThemeSettingUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class MainViewModel : ViewModel(), KoinComponent {
-
-    private val getThemeSettingUseCase: GetThemeSettingUseCase by inject()
-    private val saveThemeSettingUseCase: SaveThemeSettingUseCase by inject()
-    private val fetchGithubUserUseCase: FetchGithubUserUseCase by inject()
-
+class MainViewModel(
+    private val getThemeSettingUseCase: GetThemeSettingUseCase,
+    private val saveThemeSettingUseCase: SaveThemeSettingUseCase,
+    private val fetchGithubUserUseCase: FetchGithubUserUseCase,
+) : ViewModel() {
     private val _responseLiveData = MutableLiveData<ResourceState<List<GithubUserEntity>>>()
     val responseLiveData: LiveData<ResourceState<List<GithubUserEntity>>> = _responseLiveData
 

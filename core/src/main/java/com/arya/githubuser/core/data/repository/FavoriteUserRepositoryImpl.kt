@@ -5,12 +5,9 @@ import com.arya.githubuser.core.data.mapper.toDto
 import com.arya.githubuser.core.data.mapper.toEntity
 import com.arya.githubuser.core.domain.model.GithubUserEntity
 import com.arya.githubuser.core.domain.repository.FavoriteUserRepository
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class FavoriteUserRepositoryImpl : FavoriteUserRepository, KoinComponent {
-
-    private val mFavoriteUserDao: FavoriteUserDao by inject()
+class FavoriteUserRepositoryImpl(private val mFavoriteUserDao: FavoriteUserDao) :
+    FavoriteUserRepository {
 
     override suspend fun getFavoriteUsers(): List<GithubUserEntity> =
         mFavoriteUserDao.getFavoriteUsers().map { it.toEntity() }

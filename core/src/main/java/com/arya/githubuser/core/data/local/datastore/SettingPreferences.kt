@@ -6,12 +6,8 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class SettingPreferences : KoinComponent {
-
-    private val dataStore: DataStore<Preferences> by inject()
+class SettingPreferences(private val dataStore: DataStore<Preferences>) {
 
     fun getThemeSetting(): Flow<Boolean> {
         return dataStore.data.map { preferences ->

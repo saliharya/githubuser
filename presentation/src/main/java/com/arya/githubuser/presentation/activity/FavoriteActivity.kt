@@ -2,12 +2,12 @@ package com.arya.githubuser.presentation.activity
 
 import android.content.Intent
 import android.view.View
-import androidx.activity.viewModels
 import com.arya.githubuser.common.base.BaseActivity
 import com.arya.githubuser.core.domain.model.GithubUserEntity
 import com.arya.githubuser.presentation.adapter.ListGitHubUserAdapter
 import com.arya.githubuser.presentation.databinding.ActivityFavoriteBinding
 import com.arya.githubuser.presentation.viewmodel.FavoriteViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteActivity : BaseActivity<ActivityFavoriteBinding, FavoriteViewModel>() {
 
@@ -15,7 +15,7 @@ class FavoriteActivity : BaseActivity<ActivityFavoriteBinding, FavoriteViewModel
     private var adapter: ListGitHubUserAdapter? = null
 
     override val binding by lazy { ActivityFavoriteBinding.inflate(layoutInflater) }
-    override val viewModel by viewModels<FavoriteViewModel>()
+    override val viewModel by viewModel<FavoriteViewModel>()
 
     override fun setupViews() {
         binding.rvFavorite.setHasFixedSize(true)

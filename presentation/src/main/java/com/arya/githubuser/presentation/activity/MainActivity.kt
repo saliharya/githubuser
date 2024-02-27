@@ -1,7 +1,6 @@
 package com.arya.githubuser.presentation.activity
 
 import android.content.Intent
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -14,6 +13,7 @@ import com.arya.githubuser.presentation.adapter.ListGitHubUserAdapter
 import com.arya.githubuser.presentation.databinding.ActivityMainBinding
 import com.arya.githubuser.presentation.viewmodel.MainViewModel
 import com.google.android.material.switchmaterial.SwitchMaterial
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
@@ -22,7 +22,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     private var adapter: ListGitHubUserAdapter? = null
 
     override val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    override val viewModel by viewModels<MainViewModel>()
+    override val viewModel by viewModel<MainViewModel>()
 
     override fun setupViews() {
         val switchTheme = findViewById<SwitchMaterial>(R.id.switchTheme)

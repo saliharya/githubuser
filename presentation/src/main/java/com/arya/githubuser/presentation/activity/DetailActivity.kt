@@ -2,7 +2,6 @@ package com.arya.githubuser.presentation.activity
 
 import android.content.Intent
 import android.content.res.ColorStateList
-import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -16,11 +15,12 @@ import com.arya.githubuser.presentation.databinding.ActivityDetailBinding
 import com.arya.githubuser.presentation.viewmodel.DetailViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : BaseActivity<ActivityDetailBinding, DetailViewModel>() {
 
     override val binding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
-    override val viewModel by viewModels<DetailViewModel>()
+    override val viewModel by viewModel<DetailViewModel>()
     override fun setupViews() {
         viewModel.getFavoriteUsers()
         val user: GithubUserEntity? = intent.getParcelableExtra("user")

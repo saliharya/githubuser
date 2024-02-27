@@ -6,7 +6,7 @@ import com.arya.githubuser.core.domain.usecase.SaveThemeSettingUseCase
 import org.koin.dsl.module
 
 val preferencesModule = module {
-    single { SettingPreferences() }
-    single { GetThemeSettingUseCase() }
-    single { SaveThemeSettingUseCase() }
+    single { SettingPreferences(get()) }
+    single { GetThemeSettingUseCase(get()) }
+    single { SaveThemeSettingUseCase(get()) }
 }
