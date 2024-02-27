@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.activity.DetailActivity">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -246,7 +245,8 @@
                             android:background="#555555"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="ContentDescription" />
 
                     </io.github.florent37.shapeofview.shapes.CircleView>
 
@@ -286,7 +286,8 @@
                             android:background="#555555"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="ContentDescription" />
 
                     </io.github.florent37.shapeofview.shapes.CircleView>
 
@@ -317,6 +318,7 @@
         android:src="@drawable/baseline_share_24"
         app:layout_constraintBottom_toBottomOf="@+id/btnFavorite"
         app:layout_constraintEnd_toStartOf="@+id/btnFavorite"
-        app:layout_constraintTop_toTopOf="@+id/btnFavorite" />
+        app:layout_constraintTop_toTopOf="@+id/btnFavorite"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

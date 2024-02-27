@@ -1,7 +1,6 @@
 package com.arya.githubuser.presentation.activity
 
 import android.content.Intent
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -117,7 +116,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     private fun moveToFavoriteActivity() {
-        startActivity(Intent(this, Class.forName("com.arya.githubuser.favorite.activity.FavoriteActivity")))
+        startActivity(
+            Intent(
+                this,
+                Class.forName("com.arya.githubuser.favorite.activity.FavoriteActivity")
+            )
+        )
     }
 
     private fun installFavoriteModule() {
