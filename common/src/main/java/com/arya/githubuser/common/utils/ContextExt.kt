@@ -1,9 +1,18 @@
 package com.arya.githubuser.common.utils
 
-import android.content.Context
-import android.widget.Toast
+import android.app.Activity
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 
-fun Context.showToast(text: String?) {
+fun Activity.showToast(text: String?) {
     if (text.isNullOrEmpty()) return
-    Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+    MotionToast.createToast(
+        context = this,
+        title = "",
+        message = text,
+        style = MotionToastStyle.WARNING,
+        position = MotionToast.GRAVITY_BOTTOM,
+        duration = MotionToast.SHORT_DURATION,
+        font = null
+    )
 }
