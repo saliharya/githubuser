@@ -42,5 +42,7 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
+    implementation 'com.github.Spikeysanju:MotionToast:1.4'
+
     implementation "io.insert-koin:koin-android:3.2.2"
 }
