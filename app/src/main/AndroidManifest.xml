@@ -15,9 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser"
         tools:targetApi="31">
-        <activity
-            android:name=".presentation.activity.FavoriteActivity"
-            android:exported="false" />
+
         <activity
             android:name=".presentation.activity.DetailActivity"
             android:exported="false" />

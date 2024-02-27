@@ -1,13 +1,16 @@
-package com.arya.githubuser.presentation.activity
+package com.arya.githubuser.favorite.activity
 
 import android.content.Intent
 import android.view.View
 import com.arya.githubuser.common.base.BaseActivity
 import com.arya.githubuser.core.domain.model.GithubUserEntity
+import com.arya.githubuser.favorite.databinding.ActivityFavoriteBinding
+import com.arya.githubuser.favorite.di.favoriteModule
+import com.arya.githubuser.favorite.viewmodel.FavoriteViewModel
+import com.arya.githubuser.presentation.activity.DetailActivity
 import com.arya.githubuser.presentation.adapter.ListGitHubUserAdapter
-import com.arya.githubuser.presentation.databinding.ActivityFavoriteBinding
-import com.arya.githubuser.presentation.viewmodel.FavoriteViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class FavoriteActivity : BaseActivity<ActivityFavoriteBinding, FavoriteViewModel>() {
 
@@ -18,6 +21,7 @@ class FavoriteActivity : BaseActivity<ActivityFavoriteBinding, FavoriteViewModel
     override val viewModel by viewModel<FavoriteViewModel>()
 
     override fun setupViews() {
+        loadKoinModules(favoriteModule)
         binding.rvFavorite.setHasFixedSize(true)
     }
 

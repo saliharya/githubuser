@@ -1,6 +1,7 @@
 package com.arya.githubuser.presentation.activity
 
 import android.content.Intent
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -13,6 +14,8 @@ import com.arya.githubuser.presentation.adapter.ListGitHubUserAdapter
 import com.arya.githubuser.presentation.databinding.ActivityMainBinding
 import com.arya.githubuser.presentation.viewmodel.MainViewModel
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import com.google.android.play.core.splitinstall.SplitInstallRequest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -52,8 +55,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             rvGithubUsers.adapter = adapter
 
             btnFavorite.setOnClickListener {
-                val intent = Intent(this@MainActivity, FavoriteActivity::class.java)
-                startActivity(intent)
+                installFavoriteModule()
             }
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -111,6 +113,30 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             if (isLoading) {
                 tvNoData.isVisible = false
             }
+        }
+    }
+
+    private fun moveToFavoriteActivity() {
+        startActivity(Intent(this, Class.forName("com.arya.githubuser.favorite.activity.FavoriteActivity")))
+    }
+
+    private fun installFavoriteModule() {
+        val splitInstallManager = SplitInstallManagerFactory.create(this)
+        val moduleFavorite = "favorite"
+        if (splitInstallManager.installedModules.contains(moduleFavorite)) {
+            moveToFavoriteActivity()
+        } else {
+            val request = SplitInstallRequest.newBuilder()
+                .addModule(moduleFavorite)
+                .build()
+            splitInstallManager.startInstall(request)
+                .addOnSuccessListener {
+                    showToast("Success installing module")
+                    moveToFavoriteActivity()
+                }
+                .addOnFailureListener {
+                    showToast(it.localizedMessage)
+                }
         }
     }
 }

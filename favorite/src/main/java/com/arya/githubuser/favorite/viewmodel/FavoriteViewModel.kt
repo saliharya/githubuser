@@ -1,4 +1,4 @@
-package com.arya.githubuser.presentation.viewmodel
+package com.arya.githubuser.favorite.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
