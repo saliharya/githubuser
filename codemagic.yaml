@@ -2,6 +2,7 @@ workflows:
   android_build:
     name: Android Build
     environment:
+      java: 17
       vars:
         GRADLE_WRAPPER: "./gradlew"
     scripts:
