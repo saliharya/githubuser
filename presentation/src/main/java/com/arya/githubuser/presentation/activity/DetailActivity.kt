@@ -70,9 +70,9 @@ class DetailActivity : BaseActivity<ActivityDetailBinding, DetailViewModel>() {
 
         viewModel.favoriteUsersLiveData.observe(this) { favoriteUsers ->
             val user: GithubUserEntity? = intent.getParcelableExtra("user")
-            val isFavorite = favoriteUsers.any {
+            val isFavorite = favoriteUsers?.any {
                 it.id == user?.id
-            }
+            } ?: false
             user?.isFavorite = isFavorite
             user?.let {
                 viewModel.setUser(it)

@@ -15,6 +15,10 @@ workflows:
           echo "Setting up environment"
           echo "BASE_URL=$BASE_URL" > $CM_BUILD_DIR/local.properties
           echo "API_KEY=$API_KEY" >> $CM_BUILD_DIR/local.properties
+      - name: Run Unit Tests
+        script: |
+          echo "Running unit tests"
+          $GRADLE_WRAPPER test
       - name: Build APK
         script: $GRADLE_WRAPPER assembleRelease
     artifacts:
