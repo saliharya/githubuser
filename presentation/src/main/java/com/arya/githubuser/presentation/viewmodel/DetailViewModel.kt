@@ -25,8 +25,8 @@ class DetailViewModel(
         MutableLiveData()
     val responseLiveData: LiveData<ResourceState<GithubUserEntity>> = _responseLiveData
 
-    private val _favoriteUsersLiveData: MutableLiveData<List<GithubUserEntity>> = MutableLiveData()
-    var favoriteUsersLiveData: LiveData<List<GithubUserEntity>> = _favoriteUsersLiveData
+    private val _favoriteUsersLiveData: MutableLiveData<List<GithubUserEntity>?> = MutableLiveData()
+    var favoriteUsersLiveData: MutableLiveData<List<GithubUserEntity>?> = _favoriteUsersLiveData
 
     fun setUser(user: GithubUserEntity) {
         _responseLiveData.postValue(ResourceState.Success(data = user))
